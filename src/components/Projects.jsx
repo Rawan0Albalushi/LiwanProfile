@@ -8,6 +8,8 @@ import {
   Plane, Coffee, BookOpen, Palette
 } from 'lucide-react';
 import nahjLogo from '../assets/images/nahj.png';
+import nahjScreen1 from '../assets/images/nahj1.jpg';
+import nahjScreen2 from '../assets/images/nahj2.jpg';
 import entreforumLogo from '../assets/images/entreforum.png';
 
 // 3D Card Component for Featured
@@ -385,150 +387,133 @@ const Projects = () => {
 
         {/* ===== FEATURED PROJECT (Nahj) ===== */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 100 }}
-          className="w-full mb-16 sm:mb-20 lg:mb-24"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="w-full mb-16 sm:mb-20 lg:mb-24 relative z-10"
         >
-          <Card3D className="w-full">
-            <motion.a
-              href={featuredProject.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full group"
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="relative w-full min-h-[400px] sm:min-h-[450px] lg:min-h-[400px] rounded-[2rem] overflow-hidden">
-                
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/90 via-teal-950/80 to-liwan-bg" />
-                <div className={`absolute inset-0 bg-gradient-to-br ${featuredProject.gradient} opacity-[0.08]`} />
-                
-                <div className="absolute inset-0 opacity-20" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                  mixBlendMode: 'overlay'
-                }} />
-                
-                <motion.div 
-                  className={`absolute ${direction === 'rtl' ? 'left-[-15%]' : 'right-[-15%]'} top-[-30%] w-[60%] h-[120%] bg-gradient-to-br ${featuredProject.gradient} rounded-full blur-[120px] opacity-30`}
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.4, 0.25] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                />
-                
-                <div className="absolute inset-0 rounded-[2rem] border border-white/[0.08] group-hover:border-white/20 transition-all duration-700" />
-                
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '200%' }}
-                  transition={{ duration: 1.2, ease: "easeInOut" }}
-                />
-                
-                <motion.div 
-                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${featuredProject.gradient}`}
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  style={{ transformOrigin: direction === 'rtl' ? 'right' : 'left' }}
-                />
-                
-                <div className="relative z-10 h-full p-8 sm:p-10 lg:p-12">
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12 h-full">
+          <a
+            href={featuredProject.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full group"
+          >
+            <div className="relative w-full rounded-[2rem] overflow-hidden">
+              
+              {/* Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0d2920] via-[#0a1f1a] to-[#071510]" />
+              
+              {/* Subtle glow */}
+              <div className={`absolute ${direction === 'rtl' ? 'right-[10%]' : 'left-[10%]'} top-[10%] w-[35%] h-[40%] bg-emerald-500/8 rounded-full blur-[80px]`} />
+              
+              {/* Border */}
+              <div className="absolute inset-0 rounded-[2rem] border border-white/[0.08] group-hover:border-emerald-500/20 transition-colors duration-500" />
+              
+              {/* Content Container */}
+              <div className="relative z-10 pt-4 pb-8 px-8 sm:pt-5 sm:pb-10 sm:px-10 lg:pt-6 lg:pb-12 lg:px-12">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12">
+                  
+                  {/* Content Side - 3 columns */}
+                  <div className={`lg:col-span-3 flex flex-col items-center justify-center ${direction === 'rtl' ? 'lg:order-2' : 'lg:order-1'}`}>
                     
-                    <div className="flex-shrink-0">
-                      <motion.div 
-                        className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48"
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <div className={`absolute inset-0 bg-gradient-to-br ${featuredProject.gradient} rounded-3xl blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-500`} />
-                        <div className="relative w-full h-full rounded-3xl bg-white/[0.1] backdrop-blur-xl border border-white/[0.15] p-5 overflow-hidden group-hover:bg-white/[0.15] transition-all duration-500">
-                          <div className={`absolute inset-0 bg-gradient-to-br ${featuredProject.gradient} opacity-10`} />
-                          <img src={featuredProject.logo} alt={featuredProject.title} className="relative z-10 w-full h-full object-contain drop-shadow-2xl" />
-                        </div>
-                      </motion.div>
-                    </div>
-                    
-                    <div className="flex-1 flex flex-col justify-center text-center lg:text-start">
-                      <motion.div className="mb-4 flex justify-center lg:justify-start">
-                        <div className="relative">
-                          <div className={`absolute inset-0 bg-gradient-to-r ${featuredProject.gradient} blur-lg opacity-50`} />
-                          <span className="relative px-5 py-2 rounded-xl bg-white/[0.1] backdrop-blur-md border border-white/[0.1] text-white text-xs font-bold uppercase tracking-widest">
-                            {featuredProject.category}
-                          </span>
-                        </div>
-                      </motion.div>
+                    {/* Text Content Container - max-w-[520px] */}
+                    <div className="max-w-[520px] text-center flex flex-col items-center">
                       
-                      <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight">
-                        {featuredProject.title}
+                      {/* Logo */}
+                      <img 
+                        src={featuredProject.logo} 
+                        alt={featuredProject.title} 
+                        className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 object-contain mb-8 mx-auto"
+                      />
+                      
+                      {/* Eyebrow / Title */}
+                      <h3 className="text-emerald-400 text-xl sm:text-2xl lg:text-3xl font-bold">
+                        {direction === 'rtl' 
+                          ? 'منصة تعليم وتدريب رقمية متكاملة' 
+                          : 'Integrated Digital Learning & Training Platform'}
                       </h3>
                       
-                      <p className="text-white/60 text-lg sm:text-xl leading-relaxed mb-6 group-hover:text-white/80 transition-colors duration-500 max-w-2xl">
-                        {featuredProject.description}
+                      <div className="h-6 sm:h-8" />
+                      
+                      {/* Description */}
+                      <p className="text-white/60 text-sm sm:text-base leading-loose">
+                        {direction === 'rtl' 
+                          ? 'منصة نهج توفّر تجربة تعليمية حديثة تجمع بين المحتوى الاحترافي، سهولة الاستخدام، وبنية تقنية مرنة، لتمكين الأفراد والمؤسسات من تطوير مهاراتهم بكفاءة عالية.' 
+                          : 'Nahj platform provides a modern learning experience combining professional content, ease of use, and flexible technical infrastructure to empower individuals and organizations.'}
                       </p>
                       
-                      <div className="flex justify-center lg:justify-start">
-                        <motion.div 
-                          className="inline-flex items-center gap-3 group/btn"
-                          whileHover={{ x: direction === 'rtl' ? -8 : 8 }}
-                        >
-                          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${featuredProject.gradient} flex items-center justify-center shadow-lg shadow-emerald-500/20`}>
-                            <Globe className="w-6 h-6 text-white" />
-                          </div>
-                          <span className="text-white font-bold text-lg">
-                            {direction === 'rtl' ? 'زيارة المنصة' : 'Visit Platform'}
-                          </span>
-                          <ArrowUpRight className="w-5 h-5 text-white/60 group-hover/btn:text-white group-hover/btn:rotate-45 transition-all duration-300" />
-                        </motion.div>
-                      </div>
-                    </div>
-                    
-                    <div className="absolute top-6 sm:top-8 right-6 sm:right-8 lg:right-10">
-                      <motion.div 
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${featuredProject.gradient} p-[1px]`}
-                        whileHover={{ rotate: 90, scale: 1.1 }}
-                        transition={{ duration: 0.4, type: "spring" }}
-                      >
-                        <div className="w-full h-full rounded-2xl bg-black/40 backdrop-blur-md flex items-center justify-center group-hover:bg-black/20 transition-all duration-500">
-                          <ArrowUpRight className="w-6 h-6 text-white" />
-                        </div>
-                      </motion.div>
+                      <div className="h-8 sm:h-10" />
+                      
+                      {/* CTA Button */}
+                      <button className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-base sm:text-lg transition-all duration-300 shadow-xl shadow-emerald-900/40 hover:shadow-2xl hover:shadow-emerald-800/50 hover:-translate-y-0.5">
+                        <span>{direction === 'rtl' ? 'زيارة المنصة' : 'Visit Platform'}</span>
+                        <ArrowUpRight className="w-5 h-5 group-hover/btn:rotate-45 transition-transform duration-300" />
+                      </button>
                     </div>
                   </div>
+                  
+                  {/* Mockup Side - 2 columns - Stacked Phones */}
+                  <div className={`lg:col-span-2 relative flex items-center justify-center ${direction === 'rtl' ? 'lg:order-1 lg:pr-4' : 'lg:order-2 lg:pl-4'}`}>
+                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[380px] sm:h-[440px]">
+                      
+                      {/* Secondary Phone - Behind, smaller, with blur */}
+                      <div className={`absolute ${direction === 'rtl' ? 'right-0' : 'left-0'} top-8 w-[55%] aspect-[9/19] rounded-2xl overflow-hidden shadow-xl shadow-black/40 bg-[#1a5c3a] opacity-60 blur-[1px]`}>
+                        <div className="absolute inset-0 rounded-2xl border border-white/[0.06] z-20" />
+                        <img 
+                          src={nahjScreen1} 
+                          alt="Nahj Platform Splash Screen" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      {/* Primary Phone - Front, bigger */}
+                      <div className={`absolute ${direction === 'rtl' ? 'left-0' : 'right-0'} top-0 w-[70%] aspect-[9/19] rounded-2xl overflow-hidden shadow-2xl shadow-black/50 bg-[#1a5c3a] z-10 group-hover:shadow-emerald-900/40 transition-shadow duration-500`}>
+                        <div className="absolute inset-0 rounded-2xl border border-white/[0.1] z-20" />
+                        <img 
+                          src={nahjScreen2} 
+                          alt="Nahj Platform Interface" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
-            </motion.a>
-          </Card3D>
+            </div>
+          </a>
         </motion.div>
 
         {/* ===== SCROLLABLE GRID PROJECTS ===== */}
-        <motion.div 
-          className="w-full relative"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5, duration: 0.6 }}
-        >
-          {/* Gradient Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-liwan-bg via-liwan-bg/90 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-liwan-bg via-liwan-bg/90 to-transparent z-10 pointer-events-none" />
-
-          {/* Scrollable Container */}
-          <div 
-            ref={scrollContainerRef}
-            className="flex flex-nowrap gap-5 sm:gap-6 overflow-x-auto py-4 scrollbar-hide"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onWheel={handleWheel}
-            onScroll={handleScroll}
+        <div className="w-full relative z-20">
+          <motion.div 
+            className="w-full relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.5, duration: 0.6 }}
           >
+            {/* Gradient Fade Edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-transparent to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-transparent to-transparent z-10 pointer-events-none" />
+
+            {/* Scrollable Container */}
+            <div 
+              ref={scrollContainerRef}
+              className="flex flex-nowrap gap-5 sm:gap-6 overflow-x-auto py-4 scrollbar-hide"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onWheel={handleWheel}
+              onScroll={handleScroll}
+            >
             {duplicatedProjects.map((project, index) => (
               <div
                 key={`${project.id}-${index}`}
-                className="flex-shrink-0 w-[160px] sm:w-[180px]"
+                className="flex-shrink-0 w-[160px] sm:w-[180px] hover:z-30"
               >
                 {project.hasUrl ? (
                   <motion.a
@@ -536,8 +521,8 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block h-full group"
-                    whileHover={{ y: -8, scale: 1.03 }}
-                    transition={{ duration: 0.3, type: "spring" }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="relative h-full min-h-[200px] sm:min-h-[220px] rounded-2xl overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-violet-950/80 via-purple-950/60 to-liwan-bg" />
@@ -588,8 +573,8 @@ const Projects = () => {
                 ) : (
                   <motion.div 
                     className="group relative h-full"
-                    whileHover={{ y: -6, scale: 1.02 }}
-                    transition={{ duration: 0.3, type: "spring" }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="relative h-full min-h-[200px] sm:min-h-[220px] p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] border-dashed backdrop-blur-sm overflow-hidden">
                       
@@ -658,7 +643,8 @@ const Projects = () => {
               </span>
             </div>
           </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         <div className="h-16 sm:h-24" />
 
