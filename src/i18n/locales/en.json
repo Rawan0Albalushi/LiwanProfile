@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "process": "Process",
+    "whyUs": "Why Us",
+    "projects": "Projects",
+    "vision": "Vision",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "We Transform Your Ideas Into Digital Solutions",
+    "titleHighlight": "That Make a Difference",
+    "description": "A company specialized in developing apps and websites. We design innovative software solutions that support your business growth and deliver a high-quality user experience, built on a genuine understanding of your needs and goals.",
+    "cta": "Start Your Project",
+    "ctaSecondary": "Learn About Us"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "We believe technology is more than just code",
+    "description1": "At Liwan Coding, we believe that technology is not just code, but a tool for building real value.",
+    "description2": "We provide smart, customized software solutions that help companies and entrepreneurs transform their ideas into reliable, scalable, and user-friendly digital products.",
+    "description3": "We work with passion, focus on quality, and place user experience at the heart of everything we deliver.",
+    "stat1": "+50",
+    "stat1Label": "Projects Completed",
+    "stat2": "+30",
+    "stat2Label": "Happy Clients",
+    "stat3": "+5",
+    "stat3Label": "Years Experience"
+  },
+  "services": {
+    "title": "What We Offer",
+    "subtitle": "A comprehensive suite of software services to meet modern business needs",
+    "service1": {
+      "title": "Mobile App Development",
+      "description": "Professional applications for iOS and Android systems, with high performance and smooth user experience."
+    },
+    "service2": {
+      "title": "Website Development",
+      "description": "Modern, fast, and responsive websites that reflect your project's identity and support your goals."
+    },
+    "service3": {
+      "title": "Custom Software Solutions",
+      "description": "Systems designed specifically to fit your business nature, whether platforms, dashboards, or internal systems."
+    },
+    "service4": {
+      "title": "UI/UX Design",
+      "description": "We focus on designing attractive and easy-to-use interfaces that enhance user satisfaction and increase engagement."
+    }
+  },
+  "process": {
+    "title": "How We Work",
+    "subtitle": "A clear methodology that ensures quality and commitment at every stage",
+    "step1": {
+      "title": "Understanding Ideas & Requirements",
+      "description": "We start by listening and analyzing to understand your needs precisely."
+    },
+    "step2": {
+      "title": "Design & Planning",
+      "description": "We design user experience and a well-thought-out technical structure before starting development."
+    },
+    "step3": {
+      "title": "Development & Implementation",
+      "description": "We write clean, scalable code using best practices."
+    },
+    "step4": {
+      "title": "Launch & Support",
+      "description": "We launch the project with confidence and provide ongoing support and improvement after delivery."
+    }
+  },
+  "whyUs": {
+    "title": "Why Liwan Coding?",
+    "subtitle": "Because we don't offer ready-made solutions, we build solutions tailored for you",
+    "reason1": "High commitment to quality and technical standards",
+    "reason2": "Deep understanding of user experience",
+    "reason3": "Scalable and growth-ready solutions",
+    "reason4": "Clear and transparent communication at all stages",
+    "reason5": "A true partnership, not just execution"
+  },
+  "projects": {
+    "title": "Our Featured Projects",
+    "subtitle": "We are proud to implement quality projects in various fields",
+    "feature1": "Enhanced user experience",
+    "feature2": "Improved performance efficiency",
+    "feature3": "Building stable and scalable systems",
+    "feature4": "Delivering solutions that serve end users and achieve business goals",
+    "quote": "We believe that the success of our clients' projects is the best proof of our work quality."
+  },
+  "vision": {
+    "title": "Our Vision",
+    "description": "We strive to be a trusted technology partner, contributing to building digital products that support digital transformation, enhance business growth, and deliver sustainable value to society."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are always open to new ideas and collaboration opportunities",
+    "description": "If you have a project, idea, or inquiry — we'd be happy to connect with you and discuss how we can help.",
+    "email": "Email",
+    "phone": "Phone Number",
+    "social": "Social Media",
+    "emailValue": "info@liwan.dev",
+    "phoneValue": "+966 XX XXX XXXX",
+    "sendMessage": "Send a Message",
+    "name": "Name",
+    "emailPlaceholder": "Email Address",
+    "message": "Your Message",
+    "send": "Send"
+  },
+  "footer": {
+    "copyright": "© 2024 Liwan Coding. All rights reserved.",
+    "madeWith": "Made with ❤️ in Oman"
+  },
+  "language": {
+    "ar": "العربية",
+    "en": "English"
+  }
+}
+
