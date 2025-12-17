@@ -93,7 +93,8 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "We are always open to new ideas and collaboration opportunities",
+    "subtitleLine1": "Have an idea or project?",
+    "subtitleLine2": "We'd love to hear from you",
     "description": "If you have a project, idea, or inquiry — we'd be happy to connect with you and discuss how we can help.",
     "email": "Email",
     "phone": "Phone Number",

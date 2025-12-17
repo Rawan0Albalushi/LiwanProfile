@@ -140,7 +140,8 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center"
         >
-          <span className="gradient-text">{t('contact.subtitle')}</span>
+          <span className="gradient-text block">{t('contact.subtitleLine1')}</span>
+          <span className="gradient-text block">{t('contact.subtitleLine2')}</span>
         </motion.h2>
 
         {/* Spacer */}

@@ -30,7 +30,7 @@ function App() {
           <About />
           <Services />
           <Process />
-          <WhyUs />
+          {/* <WhyUs /> */}
           <Projects />
           <Vision />
           <Contact />

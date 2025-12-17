@@ -69,13 +69,16 @@
   --color-liwan-text-secondary: #E5E7EB;
   --color-liwan-text-muted: #9CA3AF;
   
-  /* Gradient colors */
-  --color-liwan-green: #22C55E;
-  --color-liwan-teal: #14B8A6;
-  --color-liwan-blue: #3B82F6;
-  --color-liwan-purple: #8B5CF6;
-  --color-liwan-yellow: #FACC15;
-  --color-liwan-red: #EF4444;
+  /* Gradient colors - Based on Liwan Logo (4 colors) */
+  --color-liwan-yellow: #FFEB3B;    /* ي - Yellow/Gold */
+  --color-liwan-green: #4CAF50;     /* و - Green */
+  --color-liwan-teal: #00BCD4;      /* ا - Cyan/Teal */
+  --color-liwan-indigo: #3F51B5;    /* ن - Indigo/Dark Blue */
+  
+  /* Mapped colors for component compatibility */
+  --color-liwan-blue: #3F51B5;      /* Using Indigo from logo (ن) */
+  --color-liwan-cyan: #00BCD4;      /* Using Teal from logo (ا) */
+  --color-liwan-purple: #3F51B5;    /* Mapped to Indigo for compatibility */
   
   /* Fonts */
   --font-ibm-arabic: 'IBM Plex Sans Arabic', sans-serif;
@@ -132,9 +135,9 @@ body {
   letter-spacing: 0;
 }
 
-/* Gradient text utility */
+/* Gradient text utility - Using Liwan Logo Colors (4 colors) */
 .gradient-text {
-  background: linear-gradient(135deg, #22C55E 0%, #14B8A6 25%, #3B82F6 50%, #8B5CF6 75%, #FACC15 100%);
+  background: linear-gradient(135deg, #3F51B5 0%, #00BCD4 33%, #4CAF50 66%, #FFEB3B 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -160,7 +163,7 @@ body {
   inset: 0;
   padding: 1px;
   border-radius: 1rem;
-  background: linear-gradient(135deg, #22C55E, #14B8A6, #3B82F6, #8B5CF6);
+  background: linear-gradient(135deg, #3F51B5, #00BCD4, #4CAF50, #FFEB3B);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -173,9 +176,9 @@ body {
   opacity: 1;
 }
 
-/* Gradient button */
+/* Gradient button - Using Liwan Logo Colors */
 .btn-gradient {
-  background: linear-gradient(135deg, #22C55E 0%, #14B8A6 50%, #3B82F6 100%);
+  background: linear-gradient(135deg, #3F51B5 0%, #00BCD4 50%, #4CAF50 100%);
   background-size: 200% 200%;
   color: white;
   padding: 0.875rem 2rem;
@@ -196,14 +199,14 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #14B8A6 0%, #3B82F6 50%, #8B5CF6 100%);
+  background: linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 .btn-gradient:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 12px 40px rgba(63, 81, 181, 0.35);
 }
 
 .btn-gradient:hover::before {
@@ -250,12 +253,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #22C55E, #3B82F6, #8B5CF6);
+  background: linear-gradient(180deg, #3F51B5, #00BCD4, #4CAF50);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #14B8A6, #3B82F6, #8B5CF6);
+  background: linear-gradient(180deg, #4CAF50, #FFEB3B);
 }
 
 /* Animated gradient background */
@@ -271,9 +274,9 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Glow effect */
+/* Glow effect - Using Liwan Logo Indigo */
 .glow {
-  filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.4));
+  filter: drop-shadow(0 0 25px rgba(63, 81, 181, 0.4));
 }
 
 /* Section padding - More spacing */
@@ -306,15 +309,15 @@ body {
   }
 }
 
-/* Selection */
+/* Selection - Using Liwan Logo Indigo */
 ::selection {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(63, 81, 181, 0.3);
   color: white;
 }
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid var(--color-liwan-teal);
+  outline: 2px solid var(--color-liwan-cyan);
   outline-offset: 2px;
 }
 
@@ -374,7 +377,7 @@ p {
 .bg-orb-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, var(--color-liwan-green) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-liwan-indigo) 0%, transparent 70%);
   top: -200px;
   left: -150px;
   animation-delay: 0s;
@@ -383,7 +386,7 @@ p {
 .bg-orb-2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, var(--color-liwan-blue) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-liwan-teal) 0%, transparent 70%);
   top: 30%;
   right: -100px;
   animation-delay: -5s;
@@ -393,7 +396,7 @@ p {
 .bg-orb-3 {
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, var(--color-liwan-purple) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-liwan-green) 0%, transparent 70%);
   bottom: 10%;
   left: 20%;
   animation-delay: -10s;
@@ -403,7 +406,7 @@ p {
 .bg-orb-4 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, var(--color-liwan-teal) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-liwan-yellow) 0%, transparent 70%);
   top: 50%;
   left: -100px;
   animation-delay: -15s;
@@ -413,7 +416,7 @@ p {
 .bg-orb-5 {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, var(--color-liwan-yellow) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-liwan-indigo) 0%, transparent 70%);
   bottom: -100px;
   right: 25%;
   animation-delay: -8s;
@@ -469,13 +472,13 @@ p {
   animation: float 4s ease-in-out 0.5s infinite;
 }
 
-/* Pulse Glow Effect */
+/* Pulse Glow Effect - Using Liwan Logo Colors */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
   }
   50% {
-    box-shadow: 0 0 40px rgba(20, 184, 166, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 40px rgba(0, 188, 212, 0.4), 0 0 60px rgba(63, 81, 181, 0.2);
   }
 }
 
@@ -542,7 +545,7 @@ p {
   transform: translateY(-8px) rotateX(2deg);
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(20, 184, 166, 0.1);
+    0 0 40px rgba(0, 188, 212, 0.1);
 }
 
 /* Magnetic Button Effect */
@@ -600,10 +603,10 @@ p {
   inset: -2px;
   border-radius: inherit;
   background: linear-gradient(135deg, 
-    var(--color-liwan-green), 
+    var(--color-liwan-indigo), 
     var(--color-liwan-teal), 
-    var(--color-liwan-blue), 
-    var(--color-liwan-purple)
+    var(--color-liwan-green), 
+    var(--color-liwan-yellow)
   );
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -660,9 +663,10 @@ p {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, 
-    var(--color-liwan-green), 
+    var(--color-liwan-indigo), 
     var(--color-liwan-teal), 
-    var(--color-liwan-blue)
+    var(--color-liwan-green),
+    var(--color-liwan-yellow)
   );
   transition: width 0.4s ease;
 }
@@ -685,9 +689,9 @@ p {
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.02) 0%, transparent 30%);
+    radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 188, 212, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(63, 81, 181, 0.02) 0%, transparent 30%);
   pointer-events: none;
 }
 
@@ -706,7 +710,7 @@ p {
   height: 300px;
   background: radial-gradient(
     circle,
-    rgba(20, 184, 166, 0.15) 0%,
+    rgba(0, 188, 212, 0.15) 0%,
     transparent 70%
   );
   transform: translate(-50%, -50%);
@@ -766,16 +770,19 @@ p {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Glowing Border Animation */
+/* Glowing Border Animation - Using Liwan Logo Colors */
 @keyframes borderGlow {
   0%, 100% {
-    border-color: rgba(34, 197, 94, 0.3);
+    border-color: rgba(63, 81, 181, 0.3);
   }
-  33% {
-    border-color: rgba(20, 184, 166, 0.3);
+  25% {
+    border-color: rgba(0, 188, 212, 0.3);
   }
-  66% {
-    border-color: rgba(59, 130, 246, 0.3);
+  50% {
+    border-color: rgba(76, 175, 80, 0.3);
+  }
+  75% {
+    border-color: rgba(255, 235, 59, 0.3);
   }
 }
 

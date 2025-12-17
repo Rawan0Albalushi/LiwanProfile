@@ -56,58 +56,95 @@ const Card3D = ({ children, className }) => {
   );
 };
 
-// Custom hook for auto-scroll using scrollBy for better RTL support
-const useAutoScroll = (containerRef, direction, speed = 1, pauseDelay = 2500) => {
+// Custom hook for smooth infinite auto-scroll using requestAnimationFrame
+const useAutoScroll = (containerRef, direction, speed = 0.5, pauseDelay = 2500) => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const isPausedRef = useRef(false);
   const resumeTimeoutRef = useRef(null);
-  const intervalRef = useRef(null);
-  const scrollDirectionRef = useRef(1); // 1 = scroll forward, -1 = scroll backward
+  const animationFrameRef = useRef(null);
+  const lastTimeRef = useRef(0);
+  const accumulatedScrollRef = useRef(0);
 
   useEffect(() => {
-    // Start the auto-scroll interval after a delay
-    const startTimeout = setTimeout(() => {
-      intervalRef.current = setInterval(() => {
-        const el = containerRef.current;
-        
-        if (!el) return;
-        
-        if (isPausedRef.current) {
-          setIsAutoScrolling(false);
-          return;
-        }
-
+    const isRTL = direction === 'rtl';
+    
+    // Smooth animation loop using requestAnimationFrame
+    const animate = (currentTime) => {
+      const el = containerRef.current;
+      
+      if (!el) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      
+      // Calculate delta time for consistent speed across frame rates
+      const deltaTime = lastTimeRef.current ? (currentTime - lastTimeRef.current) / 16.67 : 1;
+      lastTimeRef.current = currentTime;
+      
+      if (!isPausedRef.current) {
         const maxScroll = el.scrollWidth - el.clientWidth;
-        if (maxScroll <= 0) return;
-
-        const currentScroll = Math.abs(el.scrollLeft);
-        const isRTL = direction === 'rtl';
+        const oneThird = el.scrollWidth / 3; // Since we have 3 copies of projects
         
-        // Check boundaries and reverse direction
-        if (currentScroll >= maxScroll - 5) {
-          scrollDirectionRef.current = -1;
-        } else if (currentScroll <= 5) {
-          scrollDirectionRef.current = 1;
+        if (maxScroll > 0) {
+          // Calculate scroll amount with delta time for smooth animation
+          const scrollAmount = speed * deltaTime;
+          
+          // Accumulate sub-pixel scroll values for smoother movement
+          accumulatedScrollRef.current += scrollAmount;
+          
+          // Only scroll when we have at least 0.3px accumulated
+          if (Math.abs(accumulatedScrollRef.current) >= 0.3) {
+            const actualScroll = accumulatedScrollRef.current;
+            
+            if (isRTL) {
+              // RTL: scroll decreases (goes more negative)
+              el.scrollLeft -= actualScroll;
+              
+              // When reached the end, jump back to middle seamlessly
+              if (Math.abs(el.scrollLeft) >= oneThird * 2) {
+                el.scrollLeft = -oneThird;
+              }
+            } else {
+              // LTR: scroll increases
+              el.scrollLeft += actualScroll;
+              
+              // When reached past the middle section, jump back seamlessly
+              if (el.scrollLeft >= oneThird * 2) {
+                el.scrollLeft = oneThird;
+              }
+            }
+            
+            accumulatedScrollRef.current = 0;
+          }
+          
+          setIsAutoScrolling(true);
         }
+      } else {
+        setIsAutoScrolling(false);
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
 
-        // Use scrollBy for consistent behavior
-        const scrollAmount = speed * scrollDirectionRef.current;
-        
+    // Start animation after initial delay
+    const startTimeout = setTimeout(() => {
+      // Set initial scroll position to the middle section for seamless loop
+      const el = containerRef.current;
+      if (el) {
+        const oneThird = el.scrollWidth / 3;
         if (isRTL) {
-          // In RTL, positive scrollBy moves content left (shows more from right)
-          el.scrollBy({ left: -scrollAmount, behavior: 'auto' });
+          el.scrollLeft = -oneThird;
         } else {
-          el.scrollBy({ left: scrollAmount, behavior: 'auto' });
+          el.scrollLeft = oneThird;
         }
-
-        setIsAutoScrolling(true);
-      }, 20); // ~50fps for smoother animation
+      }
+      animationFrameRef.current = requestAnimationFrame(animate);
     }, 800);
 
     return () => {
       clearTimeout(startTimeout);
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
       if (resumeTimeoutRef.current) {
         clearTimeout(resumeTimeoutRef.current);
@@ -149,8 +186,8 @@ const Projects = () => {
   const scrollContainerRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  // Use auto-scroll hook - speed: 2px/frame (~100px/sec), pause delay: 2 seconds
-  const { pause, resume, touch } = useAutoScroll(scrollContainerRef, direction, 2, 2000);
+  // Use auto-scroll hook - speed: 0.5px/frame (~30px/sec), pause delay: 2 seconds
+  const { pause, resume, touch } = useAutoScroll(scrollContainerRef, direction, 0.5, 2000);
 
   // Event handlers for pausing auto-scroll on user interaction
   const handleMouseDown = () => pause();
@@ -161,7 +198,17 @@ const Projects = () => {
   const handleWheel = (e) => {
     const container = scrollContainerRef.current;
     if (container && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      container.scrollLeft += e.deltaY;
+      e.preventDefault();
+      // Smooth scroll multiplier for better feel
+      const scrollMultiplier = 0.8;
+      const scrollAmount = e.deltaY * scrollMultiplier;
+      
+      // Apply scroll based on direction
+      if (direction === 'rtl') {
+        container.scrollLeft -= scrollAmount;
+      } else {
+        container.scrollLeft += scrollAmount;
+      }
     }
     touch();
   };
@@ -331,21 +378,21 @@ const Projects = () => {
               {/* Border */}
               <div className="absolute inset-0 rounded-[2rem] border border-white/[0.08] group-hover:border-emerald-500/20 transition-colors duration-500" />
               
-              {/* Content Container */}
-              <div className="relative z-10 pt-4 pb-6 px-4 xs:px-6 sm:pt-5 sm:pb-10 sm:px-10 lg:pt-6 lg:pb-12 lg:px-12">
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-10 lg:gap-12">
+{/* Content Container */}
+                <div className="relative z-10 pt-6 pb-8 px-6 xs:px-8 sm:pt-8 sm:pb-12 sm:px-12 lg:pt-10 lg:pb-14 lg:px-16">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-10 lg:gap-16">
                   
                   {/* Content Side - 3 columns */}
                   <div className={`lg:col-span-3 flex flex-col items-center justify-center ${direction === 'rtl' ? 'lg:order-2' : 'lg:order-1'}`}>
                     
-                    {/* Text Content Container - max-w-[520px] */}
-                    <div className="max-w-[520px] text-center flex flex-col items-center">
+                    {/* Text Content Container - max-w-[640px] */}
+                    <div className="max-w-[640px] text-center flex flex-col items-center">
                       
                       {/* Logo */}
                       <img 
                         src={featuredProject.logo} 
                         alt={featuredProject.title} 
-                        className="w-36 xs:w-44 h-auto sm:w-56 lg:w-72 mb-6 sm:mb-8 mx-auto drop-shadow-2xl"
+                        className="w-40 xs:w-48 h-auto sm:w-64 lg:w-80 mb-6 sm:mb-8 mx-auto drop-shadow-2xl"
                       />
                       
                       {/* Eyebrow / Title */}
@@ -376,7 +423,7 @@ const Projects = () => {
                   
                   {/* Mockup Side - 2 columns - Stacked Phones */}
                   <div className={`lg:col-span-2 relative flex items-center justify-center ${direction === 'rtl' ? 'lg:order-1 lg:pr-4' : 'lg:order-2 lg:pl-4'}`}>
-                    <div className="relative w-full max-w-[200px] xs:max-w-[240px] sm:max-w-[320px] h-[280px] xs:h-[320px] sm:h-[440px]">
+                    <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[380px] lg:max-w-[420px] h-[320px] xs:h-[360px] sm:h-[480px] lg:h-[520px]">
                       
                       {/* Secondary Phone - Behind, smaller, with blur */}
                       <div className={`absolute ${direction === 'rtl' ? 'right-0' : 'left-0'} top-6 sm:top-8 w-[55%] aspect-[9/19] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl shadow-black/40 bg-[#1a5c3a] opacity-60 blur-[1px]`}>
@@ -408,7 +455,7 @@ const Projects = () => {
         </motion.div>
 
         {/* ===== SCROLLABLE GRID PROJECTS ===== */}
-        <div className="w-full relative z-10 overflow-visible">
+        <div className="w-[100vw] relative z-10 overflow-visible -mx-[calc((100vw-100%)/2)]">
           <motion.div 
             className="w-full relative"
             initial={{ opacity: 0, y: 30 }}
@@ -416,14 +463,21 @@ const Projects = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             {/* Gradient Fade Edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-r from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 lg:w-64 bg-gradient-to-r from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 lg:w-64 bg-gradient-to-l from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
 
             {/* Scrollable Container */}
             <div 
               ref={scrollContainerRef}
               className="flex flex-nowrap gap-6 sm:gap-8 overflow-x-scroll py-6 px-4 scrollbar-hide"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              dir={direction}
+              style={{ 
+                scrollbarWidth: 'none', 
+                msOverflowStyle: 'none',
+                willChange: 'scroll-position',
+                WebkitOverflowScrolling: 'touch',
+                scrollBehavior: 'auto',
+              }}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseLeave}
@@ -758,7 +812,7 @@ const Projects = () => {
                 "
               </motion.div>
 
-              <p className="relative z-10 text-base xs:text-lg sm:text-2xl md:text-3xl text-white/90 font-medium leading-relaxed text-center">
+              <p className="relative z-10 text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-medium leading-loose sm:leading-relaxed text-center px-2 sm:px-0">
                 {t('projects.quote')}
               </p>
 
@@ -774,10 +828,23 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      {/* Hide scrollbar CSS */}
+      {/* Hide scrollbar & Smooth scroll CSS */}
       <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          /* GPU acceleration for smoother scrolling */
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+        /* Ensure smooth momentum scrolling on touch devices */
+        @supports (-webkit-overflow-scrolling: touch) {
+          .scrollbar-hide {
+            -webkit-overflow-scrolling: touch;
+          }
         }
       `}</style>
     </section>
