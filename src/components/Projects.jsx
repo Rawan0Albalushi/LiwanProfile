@@ -11,6 +11,7 @@ import nahjLogo from '../assets/images/nahj.png';
 import nahjScreen1 from '../assets/images/nahj1.jpg';
 import nahjScreen2 from '../assets/images/nahj2.jpg';
 import entreforumLogo from '../assets/images/entreforum.png';
+import entreforumBg from '../assets/images/entreforum-back.png';
 
 // 3D Card Component for Featured
 const Card3D = ({ children, className }) => {
@@ -148,7 +149,7 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   // Use auto-scroll hook - speed: 2px/frame (~100px/sec), pause delay: 2 seconds
-  const { pause, resume, touch, isAutoScrolling } = useAutoScroll(scrollContainerRef, direction, 2, 2000);
+  const { pause, resume, touch } = useAutoScroll(scrollContainerRef, direction, 2, 2000);
 
   // Event handlers for pausing auto-scroll on user interaction
   const handleMouseDown = () => pause();
@@ -184,11 +185,15 @@ const Projects = () => {
       id: 2,
       title: direction === 'rtl' ? 'ملتقى ريادة الأعمال' : 'Entrepreneurship Forum',
       subtitle: direction === 'rtl' ? 'الوسطى تبتكر' : 'Al-Wusta Innovates',
-      category: direction === 'rtl' ? 'فعاليات' : 'Events',
+      description: direction === 'rtl' 
+        ? 'منصة رقمية متكاملة صُممت لإدارة فعاليات ريادة الأعمال، من التسجيل وحتى التفاعل، مع تجربة مستخدم حديثة وبنية تقنية قابلة للتوسع.'
+        : 'An integrated digital platform designed to manage entrepreneurship events, from registration to interaction, with a modern UX and scalable architecture.',
       logo: entreforumLogo,
+      bgImage: entreforumBg,
       url: 'https://entreforum.om/',
       gradient: 'from-violet-400 via-purple-500 to-fuchsia-600',
       hasUrl: true,
+      isLive: true,
     },
     {
       id: 3,
@@ -514,6 +519,8 @@ const Projects = () => {
               <div
                 key={`${project.id}-${index}`}
                 className="flex-shrink-0 w-[200px] sm:w-[240px] relative"
+                onMouseEnter={pause}
+                onMouseLeave={resume}
               >
                 {project.hasUrl ? (
                   <a
@@ -522,10 +529,26 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="block h-full group cursor-pointer relative"
                   >
-                    <div className="relative h-full min-h-[280px] sm:min-h-[320px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60">
-                      {/* Rich gradient background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-violet-900/90 via-purple-900/80 to-fuchsia-950/90" />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                    <div className="relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60">
+                      {/* Background Image with blur overlay */}
+                      {project.bgImage ? (
+                        <>
+                          <img 
+                            src={project.bgImage} 
+                            alt="" 
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          {/* Dark glass overlay for text readability */}
+                          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/70 via-[#0a1628]/80 to-[#0a1628]/90 backdrop-blur-[2px]" />
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
+                        </>
+                      ) : (
+                        <>
+                          {/* Rich gradient background */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-violet-900/90 via-purple-900/80 to-fuchsia-950/90" />
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                        </>
+                      )}
                       
                       {/* Animated glow orbs */}
                       <motion.div 
@@ -548,11 +571,11 @@ const Projects = () => {
                         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                       </div>
                       
-                      <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col items-center justify-center text-center">
-                        {/* Large prominent logo */}
+                      <div className="relative z-10 h-full p-5 sm:p-6 pt-6 sm:pt-8 flex flex-col items-center justify-start text-center">
+                        {/* Logo */}
                         <motion.div 
-                          className="relative w-32 h-32 sm:w-40 sm:h-40 mb-6 flex items-center justify-center"
-                          animate={{ y: [0, -8, 0] }}
+                          className="relative w-32 h-32 sm:w-36 sm:h-36 mb-4 flex items-center justify-center"
+                          animate={{ y: [0, -4, 0] }}
                           transition={{ duration: 4, repeat: Infinity, delay: index * 0.2, ease: "easeInOut" }}
                         >
                           {/* Logo glow backdrop */}
@@ -565,21 +588,39 @@ const Projects = () => {
                         </motion.div>
                         
                         {/* Title */}
-                        <h4 className="text-base sm:text-lg font-bold text-white mb-2 drop-shadow-lg">
+                        <h4 className="text-base sm:text-lg font-bold text-white mb-1 drop-shadow-lg">
                           {project.title}
                         </h4>
                         
                         {/* Subtitle with gradient */}
                         {project.subtitle && (
-                          <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold mb-4 drop-shadow-lg`}>
+                          <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold drop-shadow-lg`}>
                             {project.subtitle}
                           </p>
                         )}
                         
-                        {/* Category badge */}
-                        <span className={`text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium`}>
-                          {project.category}
-                        </span>
+                        <div className="h-4" />
+                        
+                        {/* Description */}
+                        {project.description && (
+                          <p className="text-xs text-white/60 leading-relaxed line-clamp-3">
+                            {project.description}
+                          </p>
+                        )}
+                        
+                        <div className="h-5" />
+                        
+                        {/* Live/Coming Soon badge */}
+                        {project.isLive ? (
+                          <span className="inline-flex items-center gap-2 text-xs sm:text-sm px-4 py-1.5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-300 font-medium">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                            {direction === 'rtl' ? 'مباشر' : 'Live'}
+                          </span>
+                        ) : (
+                          <span className="text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium">
+                            {direction === 'rtl' ? 'قريباً' : 'Coming Soon'}
+                          </span>
+                        )}
                         
                         {/* Visit indicator */}
                         <div 
@@ -592,7 +633,7 @@ const Projects = () => {
                   </a>
                 ) : (
                   <div className="group relative h-full cursor-default">
-                    <div className="relative h-full min-h-[280px] sm:min-h-[320px] rounded-3xl overflow-hidden shadow-xl shadow-black/20 group-hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] ring-2 ring-transparent group-hover:ring-purple-500/40 transition-all duration-500">
+                    <div className="relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-xl shadow-black/20 group-hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] ring-2 ring-transparent group-hover:ring-purple-500/40 transition-all duration-500">
                       
                       {/* Sleek dark glass background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent backdrop-blur-xl" />
@@ -658,26 +699,6 @@ const Projects = () => {
                 )}
               </div>
             ))}
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="flex justify-center mt-8 gap-2">
-            <div className="text-sm text-white/50 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-              <motion.div 
-                className={`w-2.5 h-2.5 rounded-full ${isAutoScrolling ? 'bg-liwan-green shadow-lg shadow-liwan-green/50' : 'bg-white/40'}`}
-                animate={isAutoScrolling ? { 
-                  scale: [1, 1.4, 1],
-                  opacity: [0.7, 1, 0.7]
-                } : {}}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-              <span className="font-medium">
-                {isAutoScrolling 
-                  ? (direction === 'rtl' ? 'تمرير تلقائي' : 'Auto-scrolling')
-                  : (direction === 'rtl' ? 'اسحب للتصفح • يستأنف تلقائياً' : 'Drag to browse • Auto-resumes')
-                }
-              </span>
-            </div>
           </div>
           </motion.div>
         </div>
