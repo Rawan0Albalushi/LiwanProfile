@@ -3,15 +3,16 @@ import { useLanguage } from '../context/LanguageContext';
 import { motion, useInView, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { 
-  ExternalLink, Code2, Rocket, Zap, Layers, Building2, ArrowUpRight, Globe, Sparkles,
-  ShoppingCart, Users, Briefcase, GraduationCap, Heart, Camera, Music, Gamepad2,
-  Plane, Coffee, BookOpen, Palette
+  ExternalLink, Code2, ArrowUpRight
 } from 'lucide-react';
 import nahjLogo from '../assets/images/nahj.png';
 import nahjScreen1 from '../assets/images/nahj1.jpg';
 import nahjScreen2 from '../assets/images/nahj2.jpg';
 import entreforumLogo from '../assets/images/entreforum.png';
 import entreforumBg from '../assets/images/entreforum-back.png';
+import studentWelfareLogo from '../assets/images/student welfare fund logo.jpg';
+import goldcomLogo from '../assets/images/Goldcom Logo - Wide Monochrome White.png';
+import maksabLogo from '../assets/images/maksab.png';
 
 // 3D Card Component for Featured
 const Card3D = ({ children, className }) => {
@@ -196,130 +197,46 @@ const Projects = () => {
       isLive: true,
     },
     {
-      id: 3,
-      title: direction === 'rtl' ? 'متجر إلكتروني' : 'E-Commerce',
-      icon: ShoppingCart,
-      gradient: 'from-cyan-400 to-blue-600',
-      comingSoon: true,
+      id: 22,
+      title: direction === 'rtl' ? 'جولدكم' : 'GoldCom',
+      subtitle: direction === 'rtl' ? 'منصّة ذكية لبيع وشراء الذهب' : 'Smart Platform for Gold Trading',
+      description: direction === 'rtl' 
+        ? 'منصّة رقمية لبيع وشراء الذهب، توفّر تجربة آمنة وسلسة للمستخدمين، مع عرض الأسعار، إدارة الطلبات، وتتبع عمليات الشراء، عبر بنية تقنية موثوقة.'
+        : 'A digital platform for buying and selling gold, providing a safe and seamless experience for users, with price display, order management, and purchase tracking through reliable technical infrastructure.',
+      logo: goldcomLogo,
+      url: 'https://goldcom.om/',
+      gradient: 'from-yellow-600 via-amber-700 to-yellow-900',
+      bgColor: 'from-amber-950 via-yellow-950 to-stone-950',
+      hasUrl: true,
+      isLive: false,
+      inDevelopment: true,
     },
     {
-      id: 4,
-      title: direction === 'rtl' ? 'منصة تعليمية' : 'EdTech Platform',
-      icon: GraduationCap,
-      gradient: 'from-amber-400 to-orange-600',
-      comingSoon: true,
+      id: 21,
+      title: direction === 'rtl' ? 'صندوق رعاية الطالب الجامعي' : 'University Student Welfare Fund',
+      subtitle: direction === 'rtl' ? 'دعم التعليم، وصناعة المستقبل' : 'Supporting Education, Building the Future',
+      description: direction === 'rtl' 
+        ? 'منصة رقمية خُصصت لدعم الطلبة الجامعيين، تتيح إدارة حالات الدعم، التبرعات، والمبادرات التعليمية، مع تجربة استخدام سهلة وبنية تقنية موثوقة.'
+        : 'A digital platform dedicated to supporting university students, enabling management of support cases, donations, and educational initiatives, with an intuitive experience and reliable technical infrastructure.',
+      logo: studentWelfareLogo,
+      gradient: 'from-fuchsia-500 via-purple-500 to-cyan-500',
+      bgColor: 'from-fuchsia-900 via-purple-900 to-cyan-900',
+      isRichCard: true,
+      isLive: false,
     },
     {
-      id: 5,
-      title: direction === 'rtl' ? 'تطبيق صحي' : 'Health App',
-      icon: Heart,
-      gradient: 'from-rose-400 to-pink-600',
-      comingSoon: true,
-    },
-    {
-      id: 6,
-      title: direction === 'rtl' ? 'نظام إداري' : 'Management System',
-      icon: Briefcase,
-      gradient: 'from-indigo-400 to-purple-600',
-      comingSoon: true,
-    },
-    {
-      id: 7,
-      title: direction === 'rtl' ? 'منصة اجتماعية' : 'Social Platform',
-      icon: Users,
-      gradient: 'from-teal-400 to-emerald-600',
-      comingSoon: true,
-    },
-    {
-      id: 8,
-      title: direction === 'rtl' ? 'تطبيق سفر' : 'Travel App',
-      icon: Plane,
-      gradient: 'from-sky-400 to-blue-600',
-      comingSoon: true,
-    },
-    {
-      id: 9,
-      title: direction === 'rtl' ? 'منصة إبداعية' : 'Creative Platform',
-      icon: Palette,
-      gradient: 'from-fuchsia-400 to-purple-600',
-      comingSoon: true,
-    },
-    {
-      id: 10,
-      title: direction === 'rtl' ? 'تطبيق ترفيهي' : 'Entertainment',
-      icon: Gamepad2,
-      gradient: 'from-green-400 to-emerald-600',
-      comingSoon: true,
-    },
-    {
-      id: 11,
-      title: direction === 'rtl' ? 'منصة موسيقى' : 'Music Platform',
-      icon: Music,
-      gradient: 'from-red-400 to-rose-600',
-      comingSoon: true,
-    },
-    {
-      id: 12,
-      title: direction === 'rtl' ? 'مكتبة رقمية' : 'Digital Library',
-      icon: BookOpen,
-      gradient: 'from-yellow-400 to-amber-600',
-      comingSoon: true,
-    },
-    {
-      id: 13,
-      title: direction === 'rtl' ? 'استوديو تصوير' : 'Photo Studio',
-      icon: Camera,
-      gradient: 'from-slate-400 to-zinc-600',
-      comingSoon: true,
-    },
-    {
-      id: 14,
-      title: direction === 'rtl' ? 'مقهى ذكي' : 'Smart Cafe',
-      icon: Coffee,
-      gradient: 'from-orange-400 to-amber-600',
-      comingSoon: true,
-    },
-    {
-      id: 15,
-      title: direction === 'rtl' ? 'عقارات' : 'Real Estate',
-      icon: Building2,
-      gradient: 'from-blue-400 to-indigo-600',
-      comingSoon: true,
-    },
-    {
-      id: 16,
-      title: direction === 'rtl' ? 'ابتكارات' : 'Innovations',
-      icon: Sparkles,
-      gradient: 'from-violet-400 to-purple-600',
-      comingSoon: true,
-    },
-    {
-      id: 17,
-      title: direction === 'rtl' ? 'تقنيات' : 'Technologies',
-      icon: Zap,
-      gradient: 'from-lime-400 to-green-600',
-      comingSoon: true,
-    },
-    {
-      id: 18,
-      title: direction === 'rtl' ? 'منصة متعددة' : 'Multi Platform',
-      icon: Layers,
-      gradient: 'from-pink-400 to-rose-600',
-      comingSoon: true,
-    },
-    {
-      id: 19,
-      title: direction === 'rtl' ? 'مشروع فضائي' : 'Space Project',
-      icon: Rocket,
-      gradient: 'from-purple-400 to-indigo-600',
-      comingSoon: true,
-    },
-    {
-      id: 20,
-      title: direction === 'rtl' ? 'مشروع مميز' : 'Special Project',
-      icon: Code2,
-      gradient: 'from-emerald-400 to-teal-600',
-      comingSoon: true,
+      id: 23,
+      title: direction === 'rtl' ? 'مكسب' : 'Maksab',
+      subtitle: direction === 'rtl' ? 'دعم الأسر المنتجة' : 'Supporting Productive Families',
+      description: direction === 'rtl' 
+        ? 'نظام رقمي متكامل لدعم التجارة المحلية، يوفّر حلول الطلب، التوصيل، وإدارة العمليات في تجربة واحدة موثوقة.'
+        : 'An integrated digital system supporting local commerce, providing ordering, delivery, and operations management solutions in one reliable experience.',
+      logo: maksabLogo,
+      gradient: 'from-teal-500 via-cyan-500 to-coral-500',
+      bgColor: 'from-teal-900 via-cyan-900 to-rose-900',
+      hasUrl: false,
+      isRichCard: true,
+      isLive: true,
     },
   ];
 
@@ -522,14 +439,15 @@ const Projects = () => {
                 onMouseEnter={pause}
                 onMouseLeave={resume}
               >
-                {project.hasUrl ? (
+                {(project.hasUrl || project.isRichCard) ? (
+                  project.hasUrl ? (
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block h-full group cursor-pointer relative"
                   >
-                    <div className="relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60">
+                    <div className={`relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-2xl ${project.bgColor ? 'shadow-amber-900/40 group-hover:shadow-[0_0_80px_rgba(217,119,6,0.5)]' : 'shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)]'} transition-all duration-500 ring-2 ring-transparent ${project.bgColor ? 'group-hover:ring-amber-400/60' : 'group-hover:ring-purple-400/60'}`}>
                       {/* Background Image with blur overlay */}
                       {project.bgImage ? (
                         <>
@@ -541,6 +459,12 @@ const Projects = () => {
                           {/* Dark glass overlay for text readability */}
                           <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/70 via-[#0a1628]/80 to-[#0a1628]/90 backdrop-blur-[2px]" />
                           <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
+                        </>
+                      ) : project.bgColor ? (
+                        <>
+                          {/* Custom background color */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor} opacity-90`} />
+                          <div className={`absolute inset-0 bg-gradient-to-b from-stone-950/40 via-stone-950/60 to-stone-950/80`} />
                         </>
                       ) : (
                         <>
@@ -610,11 +534,15 @@ const Projects = () => {
                         
                         <div className="h-5" />
                         
-                        {/* Live/Coming Soon badge */}
+                        {/* Live/In Development/Coming Soon badge */}
                         {project.isLive ? (
                           <span className="inline-flex items-center gap-2 text-xs sm:text-sm px-4 py-1.5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-300 font-medium">
                             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                             {direction === 'rtl' ? 'مباشر' : 'Live'}
+                          </span>
+                        ) : project.inDevelopment ? (
+                          <span className="text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium">
+                            {direction === 'rtl' ? 'قيد التطوير' : 'In Development'}
                           </span>
                         ) : (
                           <span className="text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium">
@@ -622,15 +550,104 @@ const Projects = () => {
                           </span>
                         )}
                         
-                        {/* Visit indicator */}
-                        <div 
-                          className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                        >
-                          <ExternalLink className="w-5 h-5 text-white" />
-                        </div>
+                        {/* Visit indicator - only show for live projects with URL */}
+                        {project.hasUrl && (
+                          <div 
+                            className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                          >
+                            <ExternalLink className="w-5 h-5 text-white" />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </a>
+                  ) : (
+                    /* Rich card without URL (isRichCard only) */
+                    <div className="block h-full group relative">
+                      <div className={`relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60`}>
+                        {/* Gradient Background for cards without bgImage */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor || project.gradient} opacity-90`} />
+                        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-slate-950/50 to-slate-950/70" />
+                        
+                        {/* Animated glow orbs */}
+                        <motion.div 
+                          className={`absolute -top-10 ${direction === 'rtl' ? '-left-10' : '-right-10'} w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-40 group-hover:opacity-70`}
+                          animate={{ scale: [1, 1.4, 1], rotate: [0, 45, 0] }}
+                          transition={{ duration: 6, repeat: Infinity }}
+                        />
+                        <motion.div 
+                          className={`absolute -bottom-10 ${direction === 'rtl' ? '-right-10' : '-left-10'} w-32 h-32 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-30 group-hover:opacity-50`}
+                          animate={{ scale: [1.2, 1, 1.2] }}
+                          transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                        />
+                        
+                        {/* Glass border effect */}
+                        <div className="absolute inset-0 rounded-3xl border-2 border-white/10 group-hover:border-white/30 transition-all duration-500" />
+                        <div className="absolute inset-[1px] rounded-3xl border border-white/5" />
+                        
+                        {/* Shine effect on hover */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                        </div>
+                        
+                        <div className="relative z-10 h-full p-5 sm:p-6 pt-6 sm:pt-8 flex flex-col items-center justify-start text-center">
+                          {/* Logo */}
+                          <motion.div 
+                            className="relative w-32 h-32 sm:w-36 sm:h-36 mb-4 flex items-center justify-center"
+                            animate={{ y: [0, -4, 0] }}
+                            transition={{ duration: 4, repeat: Infinity, delay: index * 0.2, ease: "easeInOut" }}
+                          >
+                            {/* Logo glow backdrop */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500`} />
+                            <img 
+                              src={project.logo} 
+                              alt={project.title} 
+                              className="relative w-full h-full object-contain drop-shadow-2xl filter brightness-110 group-hover:brightness-125 transition-all duration-500 rounded-xl" 
+                            />
+                          </motion.div>
+                          
+                          {/* Title */}
+                          <h4 className="text-base sm:text-lg font-bold text-white mb-1 drop-shadow-lg">
+                            {project.title}
+                          </h4>
+                          
+                          {/* Subtitle with gradient */}
+                          {project.subtitle && (
+                            <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold drop-shadow-lg`}>
+                              {project.subtitle}
+                            </p>
+                          )}
+                          
+                          <div className="h-4" />
+                          
+                          {/* Description */}
+                          {project.description && (
+                            <p className="text-xs text-white/60 leading-relaxed line-clamp-3">
+                              {project.description}
+                            </p>
+                          )}
+                          
+                          <div className="h-5" />
+                          
+                          {/* Live/In Development/Coming Soon badge */}
+                          {project.isLive ? (
+                            <span className="inline-flex items-center gap-2 text-xs sm:text-sm px-4 py-1.5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-300 font-medium">
+                              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                              {direction === 'rtl' ? 'مباشر' : 'Live'}
+                            </span>
+                          ) : project.inDevelopment ? (
+                            <span className="text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium">
+                              {direction === 'rtl' ? 'قيد التطوير' : 'In Development'}
+                            </span>
+                          ) : (
+                            <span className="text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium">
+                              {direction === 'rtl' ? 'قيد التطوير' : 'In Development'}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )
                 ) : (
                   <div className="group relative h-full cursor-default">
                     <div className="relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-xl shadow-black/20 group-hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] ring-2 ring-transparent group-hover:ring-purple-500/40 transition-all duration-500">
