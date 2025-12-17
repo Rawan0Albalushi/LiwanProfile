@@ -104,7 +104,7 @@ const About = () => {
                       animate={isInView ? { opacity: 1 } : {}}
                       transition={{ delay: 1 }}
                     >
-                      +50
+                      +15
                     </motion.div>
                     <div className="text-sm text-liwan-text-muted group-hover:text-liwan-text-secondary transition-colors">
                       {direction === 'rtl' ? 'مشروع ناجح' : 'Successful Projects'}
