@@ -322,7 +322,7 @@ const Projects = () => {
   const duplicatedProjects = [...gridProjects, ...gridProjects, ...gridProjects];
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
+    <section id="projects" className="section-padding relative overflow-visible">
       
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -344,7 +344,7 @@ const Projects = () => {
         />
       </div>
 
-      <div ref={ref} className="container-custom relative z-10 flex flex-col items-center">
+      <div ref={ref} className="container-custom relative z-10 flex flex-col items-center overflow-visible">
         
         {/* Badge */}
         <motion.div
@@ -390,7 +390,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-full mb-16 sm:mb-20 lg:mb-24 relative z-10"
+          className="w-full mb-8 sm:mb-10 lg:mb-12 relative z-0"
         >
           <a
             href={featuredProject.url}
@@ -486,7 +486,7 @@ const Projects = () => {
         </motion.div>
 
         {/* ===== SCROLLABLE GRID PROJECTS ===== */}
-        <div className="w-full relative z-20">
+        <div className="w-full relative z-10 overflow-visible">
           <motion.div 
             className="w-full relative"
             initial={{ opacity: 0, y: 30 }}
@@ -494,13 +494,13 @@ const Projects = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             {/* Gradient Fade Edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-transparent to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-transparent to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-r from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
 
             {/* Scrollable Container */}
             <div 
               ref={scrollContainerRef}
-              className="flex flex-nowrap gap-5 sm:gap-6 overflow-x-auto py-4 scrollbar-hide"
+              className="flex flex-nowrap gap-6 sm:gap-8 overflow-x-scroll py-6 px-4 scrollbar-hide"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
@@ -513,126 +513,165 @@ const Projects = () => {
             {duplicatedProjects.map((project, index) => (
               <div
                 key={`${project.id}-${index}`}
-                className="flex-shrink-0 w-[160px] sm:w-[180px] hover:z-30"
+                className="flex-shrink-0 w-[200px] sm:w-[240px] relative"
               >
                 {project.hasUrl ? (
-                  <motion.a
+                  <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block h-full group"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
+                    className="block h-full group cursor-pointer relative"
                   >
-                    <div className="relative h-full min-h-[200px] sm:min-h-[220px] rounded-2xl overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-violet-950/80 via-purple-950/60 to-liwan-bg" />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
+                    <div className="relative h-full min-h-[280px] sm:min-h-[320px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60">
+                      {/* Rich gradient background */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-violet-900/90 via-purple-900/80 to-fuchsia-950/90" />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
                       
+                      {/* Animated glow orbs */}
                       <motion.div 
-                        className={`absolute top-0 ${direction === 'rtl' ? 'left-0' : 'right-0'} w-20 h-20 bg-gradient-to-br ${project.gradient} rounded-full blur-2xl opacity-30 group-hover:opacity-50`}
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 4, repeat: Infinity }}
+                        className={`absolute -top-10 ${direction === 'rtl' ? '-left-10' : '-right-10'} w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-40 group-hover:opacity-70`}
+                        animate={{ scale: [1, 1.4, 1], rotate: [0, 45, 0] }}
+                        transition={{ duration: 6, repeat: Infinity }}
+                      />
+                      <motion.div 
+                        className={`absolute -bottom-10 ${direction === 'rtl' ? '-right-10' : '-left-10'} w-32 h-32 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-30 group-hover:opacity-50`}
+                        animate={{ scale: [1.2, 1, 1.2] }}
+                        transition={{ duration: 5, repeat: Infinity, delay: 1 }}
                       />
                       
-                      <div className="absolute inset-0 rounded-2xl border border-white/[0.06] group-hover:border-white/20 transition-all duration-500" />
+                      {/* Glass border effect */}
+                      <div className="absolute inset-0 rounded-3xl border-2 border-white/10 group-hover:border-white/30 transition-all duration-500" />
+                      <div className="absolute inset-[1px] rounded-3xl border border-white/5" />
                       
-                      <div className="relative z-10 h-full p-4 sm:p-5 flex flex-col items-center justify-center text-center">
+                      {/* Shine effect on hover */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                      </div>
+                      
+                      <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col items-center justify-center text-center">
+                        {/* Large prominent logo */}
                         <motion.div 
-                          className="relative w-28 h-28 sm:w-32 sm:h-32 mb-3"
-                          animate={{ y: [0, -5, 0] }}
-                          transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
+                          className="relative w-32 h-32 sm:w-40 sm:h-40 mb-6 flex items-center justify-center"
+                          animate={{ y: [0, -8, 0] }}
+                          transition={{ duration: 4, repeat: Infinity, delay: index * 0.2, ease: "easeInOut" }}
                         >
-                          <img src={project.logo} alt={project.title} className="w-full h-full object-contain drop-shadow-xl" />
+                          {/* Logo glow backdrop */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500`} />
+                          <img 
+                            src={project.logo} 
+                            alt={project.title} 
+                            className="relative w-full h-full object-contain drop-shadow-2xl filter brightness-110 group-hover:brightness-125 transition-all duration-500" 
+                          />
                         </motion.div>
                         
-                        <h4 className="text-xs sm:text-sm font-bold text-white mb-1 line-clamp-1">
+                        {/* Title */}
+                        <h4 className="text-base sm:text-lg font-bold text-white mb-2 drop-shadow-lg">
                           {project.title}
                         </h4>
                         
+                        {/* Subtitle with gradient */}
                         {project.subtitle && (
-                          <p className={`text-[10px] sm:text-xs text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-semibold mb-2`}>
+                          <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold mb-4 drop-shadow-lg`}>
                             {project.subtitle}
                           </p>
                         )}
                         
-                        <span className="text-[9px] sm:text-[10px] text-white/40 px-2 py-0.5 rounded-full border border-white/10">
+                        {/* Category badge */}
+                        <span className={`text-xs sm:text-sm px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 font-medium`}>
                           {project.category}
                         </span>
                         
-                        <motion.div 
-                          className="absolute top-2 right-2 w-6 h-6 rounded-md bg-white/[0.05] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
+                        {/* Visit indicator */}
+                        <div 
+                          className={`absolute top-4 ${direction === 'rtl' ? 'left-4' : 'right-4'} w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                         >
-                          <ExternalLink className="w-3 h-3 text-white/60" />
-                        </motion.div>
+                          <ExternalLink className="w-5 h-5 text-white" />
+                        </div>
                       </div>
                     </div>
-                  </motion.a>
+                  </a>
                 ) : (
-                  <motion.div 
-                    className="group relative h-full"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="relative h-full min-h-[200px] sm:min-h-[220px] p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] border-dashed backdrop-blur-sm overflow-hidden">
+                  <div className="group relative h-full cursor-default">
+                    <div className="relative h-full min-h-[280px] sm:min-h-[320px] rounded-3xl overflow-hidden shadow-xl shadow-black/20 group-hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] ring-2 ring-transparent group-hover:ring-purple-500/40 transition-all duration-500">
                       
+                      {/* Sleek dark glass background */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent backdrop-blur-xl" />
+                      
+                      {/* Gradient overlay on hover */}
                       <motion.div 
-                        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-[0.08] transition-all duration-700`}
+                        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-15 transition-all duration-700`}
                       />
                       
+                      {/* Animated glow orb */}
                       <motion.div
-                        className={`absolute top-2 ${direction === 'rtl' ? 'left-2' : 'right-2'} w-10 h-10 bg-gradient-to-br ${project.gradient} rounded-full blur-xl opacity-0 group-hover:opacity-30`}
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 3, repeat: Infinity }}
+                        className={`absolute -top-6 ${direction === 'rtl' ? '-left-6' : '-right-6'} w-24 h-24 bg-gradient-to-br ${project.gradient} rounded-full blur-2xl opacity-20 group-hover:opacity-50`}
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 4, repeat: Infinity, delay: index * 0.15 }}
                       />
                       
-                      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center">
+                      {/* Glass border */}
+                      <div className="absolute inset-0 rounded-3xl border border-white/[0.08] group-hover:border-white/25 transition-all duration-500" />
+                      <div className="absolute inset-[1px] rounded-3xl border border-dashed border-white/[0.04] group-hover:border-white/10 transition-all duration-500" />
+                      
+                      <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col items-center justify-center text-center">
+                        {/* Large icon container */}
                         <motion.div 
-                          className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${project.gradient} p-[1.5px] mb-3`}
+                          className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${project.gradient} p-[2px] mb-6 shadow-lg`}
                           animate={{ 
-                            y: [0, -5, 0],
-                            rotate: [0, 3, -3, 0]
+                            y: [0, -6, 0],
+                            rotate: [0, 2, -2, 0]
                           }}
                           transition={{ duration: 5, repeat: Infinity, delay: index * 0.2 }}
-                          whileHover={{ rotate: 12, scale: 1.1 }}
                         >
-                          <div className="w-full h-full rounded-xl bg-liwan-bg/90 flex items-center justify-center group-hover:bg-liwan-bg/70 transition-all duration-500">
-                            {project.icon && <project.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white/40 group-hover:text-white/80 transition-colors duration-500" />}
+                          {/* Icon glow backdrop */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
+                          
+                          <div className="relative w-full h-full rounded-2xl bg-liwan-bg/95 group-hover:bg-liwan-bg/80 flex items-center justify-center transition-all duration-500 overflow-hidden">
+                            {/* Inner gradient on hover */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                            {project.icon && (
+                              <project.icon className="relative w-9 h-9 sm:w-11 sm:h-11 text-white/50 group-hover:text-white transition-colors duration-500" />
+                            )}
                           </div>
                         </motion.div>
 
-                        <p className="text-xs sm:text-sm font-medium text-white/30 group-hover:text-white/60 transition-colors duration-500 mb-2 line-clamp-1">
+                        {/* Title */}
+                        <p className="text-base sm:text-lg font-semibold text-white/50 group-hover:text-white/90 transition-colors duration-500 mb-4">
                           {project.title}
                         </p>
 
+                        {/* Coming Soon badge */}
                         <motion.div 
-                          className="px-3 py-1 rounded-full bg-white/[0.02] border border-white/[0.06] group-hover:border-white/15 transition-all duration-500"
-                          animate={{ opacity: [0.6, 1, 0.6] }}
-                          transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.1 }}
+                          className={`px-5 py-2 rounded-full bg-gradient-to-r ${project.gradient} p-[1px] shadow-lg`}
+                          animate={{ opacity: [0.7, 1, 0.7] }}
+                          transition={{ duration: 3, repeat: Infinity, delay: index * 0.1 }}
                         >
-                          <span className="text-[9px] sm:text-[10px] font-semibold text-white/20 group-hover:text-white/50 transition-colors uppercase tracking-wider">
-                            {direction === 'rtl' ? 'قريباً' : 'Soon'}
-                          </span>
+                          <div className="px-4 py-1.5 rounded-full bg-liwan-bg/90 group-hover:bg-liwan-bg/70 transition-colors duration-500">
+                            <span className={`text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} uppercase tracking-widest`}>
+                              {direction === 'rtl' ? 'قريباً' : 'Coming Soon'}
+                            </span>
+                          </div>
                         </motion.div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </div>
             ))}
           </div>
 
           {/* Scroll Indicator */}
-          <div className="flex justify-center mt-6 gap-2">
-            <div className="text-xs text-white/40 flex items-center gap-2">
+          <div className="flex justify-center mt-8 gap-2">
+            <div className="text-sm text-white/50 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
               <motion.div 
-                className={`w-2 h-2 rounded-full ${isAutoScrolling ? 'bg-liwan-green' : 'bg-white/30'}`}
+                className={`w-2.5 h-2.5 rounded-full ${isAutoScrolling ? 'bg-liwan-green shadow-lg shadow-liwan-green/50' : 'bg-white/40'}`}
                 animate={isAutoScrolling ? { 
-                  scale: [1, 1.3, 1],
+                  scale: [1, 1.4, 1],
                   opacity: [0.7, 1, 0.7]
                 } : {}}
                 transition={{ duration: 1, repeat: Infinity }}
               />
-              <span>
+              <span className="font-medium">
                 {isAutoScrolling 
                   ? (direction === 'rtl' ? 'تمرير تلقائي' : 'Auto-scrolling')
                   : (direction === 'rtl' ? 'اسحب للتصفح • يستأنف تلقائياً' : 'Drag to browse • Auto-resumes')
