@@ -244,9 +244,10 @@ const WhyUs = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.9 }}
+          className="w-full flex justify-center px-2"
         >
           <motion.div 
-            className="relative inline-flex items-center gap-4 px-8 py-5 rounded-2xl bg-gradient-to-r from-liwan-green/10 via-liwan-blue/10 to-liwan-purple/10 border border-white/10 shadow-xl shadow-black/20 backdrop-blur-sm overflow-hidden"
+            className="relative inline-flex items-center gap-2 xs:gap-3 sm:gap-4 px-4 xs:px-6 sm:px-8 py-4 sm:py-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-liwan-green/10 via-liwan-blue/10 to-liwan-purple/10 border border-white/10 shadow-xl shadow-black/20 backdrop-blur-sm overflow-hidden"
             animate={isInView ? { 
               y: [0, -5, 0],
             } : {}}
@@ -283,11 +284,12 @@ const WhyUs = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              className="flex-shrink-0"
             >
-              <Code2 className="w-6 h-6 text-liwan-yellow" />
+              <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-liwan-yellow" />
             </motion.div>
             
-            <span className="text-base sm:text-lg text-white leading-[1.8] relative z-10">
+            <span className="text-sm xs:text-base sm:text-lg text-white leading-[1.8] relative z-10 text-center">
               {direction === 'rtl' 
                 ? 'نحن شريكك المثالي لتحويل أفكارك إلى واقع رقمي' 
                 : "We're your ideal partner to transform your ideas into digital reality"}
@@ -304,8 +306,9 @@ const WhyUs = () => {
                 ease: "easeInOut",
                 delay: 0.5
               }}
+              className="flex-shrink-0"
             >
-              <Code2 className="w-6 h-6 text-liwan-yellow" />
+              <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-liwan-yellow" />
             </motion.div>
           </motion.div>
         </motion.div>

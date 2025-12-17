@@ -140,10 +140,10 @@ const Vision = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full relative"
+            className="w-full relative px-1"
           >
             <motion.div 
-              className="relative p-8 sm:p-10 md:p-12 rounded-2xl bg-liwan-bg-secondary/50 border border-white/10 text-center backdrop-blur-sm overflow-hidden"
+              className="relative p-5 xs:p-6 sm:p-10 md:p-12 rounded-xl sm:rounded-2xl bg-liwan-bg-secondary/50 border border-white/10 text-center backdrop-blur-sm overflow-hidden"
               animate={isInView ? { 
                 y: [0, -5, 0],
               } : {}}
@@ -201,7 +201,7 @@ const Vision = () => {
               </motion.div>
               
               {/* Vision text */}
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium leading-[2] relative z-10">
+              <p className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium leading-[1.8] xs:leading-[2] relative z-10">
                 {t('vision.description')}
               </p>
               
@@ -242,7 +242,7 @@ const Vision = () => {
           <div className="h-12 sm:h-16" />
 
           {/* Vision Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full">
+          <div className="grid grid-cols-1 xs:grid-cols-3 gap-4 xs:gap-3 sm:gap-5 w-full">
             {pillars.map((pillar, index) => (
               <motion.div
                 key={index}
@@ -251,7 +251,7 @@ const Vision = () => {
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.15 }}
               >
                 <motion.div 
-                  className="p-5 sm:p-6 rounded-xl bg-liwan-bg-secondary/40 border border-white/10 text-center flex flex-col items-center relative overflow-hidden shadow-lg shadow-black/20"
+                  className="p-4 xs:p-4 sm:p-6 rounded-lg xs:rounded-xl bg-liwan-bg-secondary/40 border border-white/10 text-center flex flex-col items-center relative overflow-hidden shadow-lg shadow-black/20"
                   animate={isInView ? { 
                     y: [0, -6, 0],
                   } : {}}
@@ -278,7 +278,7 @@ const Vision = () => {
                   
                   {/* Icon container */}
                   <motion.div 
-                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br ${pillar.gradient} p-[2px] shadow-lg relative z-10`}
+                    className={`w-12 h-12 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-lg xs:rounded-xl bg-gradient-to-br ${pillar.gradient} p-[2px] shadow-lg relative z-10`}
                     animate={isInView ? { 
                       scale: [1, 1.1, 1],
                       rotate: [0, 5, -5, 0],
@@ -290,21 +290,21 @@ const Vision = () => {
                       ease: "easeInOut"
                     }}
                   >
-                    <div className="w-full h-full rounded-xl bg-liwan-bg/80 flex items-center justify-center">
-                      <pillar.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    <div className="w-full h-full rounded-lg xs:rounded-xl bg-liwan-bg/80 flex items-center justify-center">
+                      <pillar.icon className="w-5 h-5 xs:w-5 xs:h-5 sm:w-7 sm:h-7 text-white" />
                     </div>
                   </motion.div>
 
                   {/* Spacer */}
-                  <div className="h-4" />
+                  <div className="h-2 xs:h-3 sm:h-4" />
 
-                  <p className="text-base sm:text-lg text-white font-medium leading-[1.8] relative z-10">
+                  <p className="text-sm xs:text-sm sm:text-lg text-white font-medium leading-[1.6] xs:leading-[1.8] relative z-10">
                     {pillar.label}
                   </p>
                   
                   {/* Decorative dot */}
                   <motion.div 
-                    className={`absolute top-3 ${direction === 'rtl' ? 'left-3' : 'right-3'} w-2 h-2 rounded-full bg-gradient-to-br ${pillar.gradient}`}
+                    className={`absolute top-2 xs:top-3 ${direction === 'rtl' ? 'left-2 xs:left-3' : 'right-2 xs:right-3'} w-1.5 xs:w-2 h-1.5 xs:h-2 rounded-full bg-gradient-to-br ${pillar.gradient}`}
                     animate={isInView ? {
                       scale: [1, 1.5, 1],
                       opacity: [0.5, 1, 0.5],

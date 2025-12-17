@@ -78,7 +78,7 @@ const Services = () => {
         <div className="h-12 sm:h-16 md:h-20" />
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-5 sm:gap-6 lg:gap-8 w-full">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -92,16 +92,16 @@ const Services = () => {
               <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-br ${service.gradient} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
               
               {/* Card */}
-              <div className="relative h-full p-8 sm:p-10 lg:p-12 rounded-2xl bg-[#0a0e14] border-0 transition-all duration-500 flex flex-col overflow-hidden">
+              <div className="relative h-full p-5 xs:p-6 sm:p-10 lg:p-12 rounded-xl sm:rounded-2xl bg-[#0a0e14] border-0 transition-all duration-500 flex flex-col overflow-hidden">
                 
                 {/* Background Glow */}
                 <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-gradient-to-br ${service.gradient} opacity-[0.06] group-hover:opacity-[0.12] blur-3xl transition-opacity duration-700`} />
                 <div className={`absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-gradient-to-br ${service.gradient} opacity-[0.04] group-hover:opacity-[0.08] blur-3xl transition-opacity duration-700 delay-100`} />
                 
                 {/* Top Row: Number + Icon */}
-                <div className="flex items-start justify-between relative z-10 mb-4">
+                <div className="flex items-start justify-between relative z-10 mb-3 sm:mb-4">
                   {/* Service Number */}
-                  <span className={`text-4xl sm:text-5xl font-bold bg-gradient-to-br ${service.gradient} bg-clip-text text-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
+                  <span className={`text-3xl xs:text-4xl sm:text-5xl font-bold bg-gradient-to-br ${service.gradient} bg-clip-text text-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
                     0{index + 1}
                   </span>
                   
@@ -111,9 +111,9 @@ const Services = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${service.gradient} p-[1.5px]`}>
-                      <div className="w-full h-full rounded-xl bg-[#0a0e14] flex items-center justify-center group-hover:bg-[#0a0e14]/70 transition-colors duration-500">
-                        <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
+                    <div className={`w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${service.gradient} p-[1.5px]`}>
+                      <div className="w-full h-full rounded-lg sm:rounded-xl bg-[#0a0e14] flex items-center justify-center group-hover:bg-[#0a0e14]/70 transition-colors duration-500">
+                        <service.icon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 text-white" strokeWidth={1.5} />
                       </div>
                     </div>
                     {/* Icon Glow */}
@@ -122,23 +122,23 @@ const Services = () => {
                 </div>
 
                 {/* Spacer */}
-                <div className="h-7" />
+                <div className="h-4 xs:h-5 sm:h-7" />
 
                 {/* Title */}
-                <h3 className="text-xl sm:text-2xl font-bold text-white transition-colors duration-300 relative z-10">
+                <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-white transition-colors duration-300 relative z-10">
                   {service.title}
                 </h3>
 
                 {/* Spacer */}
-                <div className="h-4" />
+                <div className="h-2 xs:h-3 sm:h-4" />
 
                 {/* Description */}
-                <p className="text-base text-liwan-text-secondary leading-[2] flex-grow relative z-10">
+                <p className="text-sm xs:text-base text-liwan-text-secondary leading-[1.8] xs:leading-[2] flex-grow relative z-10">
                   {service.description}
                 </p>
 
                 {/* Spacer */}
-                <div className="h-6" />
+                <div className="h-4 xs:h-5 sm:h-6" />
 
                 {/* Bottom Gradient Line */}
                 <div className="relative h-[2px] bg-white/[0.06] rounded-full overflow-hidden">

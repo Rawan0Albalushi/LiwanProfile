@@ -57,52 +57,52 @@ const Footer = () => {
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="container-custom py-12 sm:py-16 flex flex-col relative z-10">
+      <div className="container-custom py-10 sm:py-16 flex flex-col relative z-10">
         
         {/* Main Footer Content */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
           
           {/* Logo & Description */}
-          <div className="lg:col-span-5 flex flex-col">
+          <div className="xs:col-span-2 lg:col-span-5 flex flex-col">
             <motion.div 
-              className="bg-white rounded-xl p-3 w-fit shadow-lg shadow-black/20"
+              className="bg-white rounded-lg xs:rounded-xl p-2 xs:p-3 w-fit shadow-lg shadow-black/20"
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <img src={logo} alt="Liwan Coding" className="h-10 w-auto" />
+              <img src={logo} alt="Liwan Coding" className="h-8 xs:h-10 w-auto" />
             </motion.div>
 
             {/* Spacer */}
-            <div className="h-5" />
+            <div className="h-4 xs:h-5" />
 
-            <p className="text-base text-liwan-text-secondary leading-[1.9] max-w-md">
+            <p className="text-sm xs:text-base text-liwan-text-secondary leading-[1.9] max-w-md">
               {direction === 'rtl'
                 ? 'نطوّر أفكارك إلى حلول رقمية مبتكرة تصنع الفرق. شريكك التقني الموثوق لبناء منتجات رقمية متميزة.'
                 : 'We transform your ideas into innovative digital solutions that make a difference. Your trusted tech partner for building exceptional digital products.'}
             </p>
 
             {/* Spacer */}
-            <div className="h-6" />
+            <div className="h-4 xs:h-6" />
             
             {/* Contact Info */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-3 xs:gap-4">
               <motion.a 
                 href="mailto:info@liwan.dev" 
-                className="flex items-center gap-3 px-4 py-3 rounded-xl bg-liwan-bg-secondary/50 border border-white/10 text-liwan-text-secondary hover:text-white hover:border-liwan-teal/30 transition-all text-sm group"
+                className="flex items-center gap-2 xs:gap-3 px-3 xs:px-4 py-2.5 xs:py-3 rounded-lg xs:rounded-xl bg-liwan-bg-secondary/50 border border-white/10 text-liwan-text-secondary hover:text-white hover:border-liwan-teal/30 transition-all text-xs xs:text-sm group"
                 whileHover={{ y: -2, scale: 1.02 }}
               >
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-liwan-green to-liwan-teal flex items-center justify-center">
-                  <Mail className="w-4 h-4 text-white" />
+                <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-md xs:rounded-lg bg-gradient-to-br from-liwan-green to-liwan-teal flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-3.5 h-3.5 xs:w-4 xs:h-4 text-white" />
                 </div>
-                <span>info@liwan.dev</span>
+                <span className="truncate">info@liwan.dev</span>
               </motion.a>
               <motion.a 
                 href="tel:+968XXXXXXXX" 
-                className="flex items-center gap-3 px-4 py-3 rounded-xl bg-liwan-bg-secondary/50 border border-white/10 text-liwan-text-secondary hover:text-white hover:border-liwan-teal/30 transition-all text-sm group"
+                className="flex items-center gap-2 xs:gap-3 px-3 xs:px-4 py-2.5 xs:py-3 rounded-lg xs:rounded-xl bg-liwan-bg-secondary/50 border border-white/10 text-liwan-text-secondary hover:text-white hover:border-liwan-teal/30 transition-all text-xs xs:text-sm group"
                 whileHover={{ y: -2, scale: 1.02 }}
               >
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-liwan-teal to-liwan-blue flex items-center justify-center">
-                  <Phone className="w-4 h-4 text-white" />
+                <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-md xs:rounded-lg bg-gradient-to-br from-liwan-teal to-liwan-blue flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-3.5 h-3.5 xs:w-4 xs:h-4 text-white" />
                 </div>
                 <span dir="ltr">+968 XX XXX XXX</span>
               </motion.a>
@@ -116,17 +116,17 @@ const Footer = () => {
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Code2 className="w-5 h-5 text-liwan-yellow" />
+                <Code2 className="w-4 h-4 xs:w-5 xs:h-5 text-liwan-yellow" />
               </motion.div>
-              <h4 className="text-white font-bold text-base">
+              <h4 className="text-white font-bold text-sm xs:text-base">
                 {direction === 'rtl' ? 'روابط سريعة' : 'Quick Links'}
               </h4>
             </div>
 
             {/* Spacer */}
-            <div className="h-5" />
+            <div className="h-3 xs:h-5" />
 
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2 xs:gap-3">
               {navItems.slice(0, 4).map((item, index) => (
                 <motion.li 
                   key={item.key}
@@ -136,10 +136,10 @@ const Footer = () => {
                 >
                   <motion.button
                     onClick={() => scrollToSection(item.href)}
-                    className="text-liwan-text-muted hover:text-liwan-teal transition-all text-sm flex items-center gap-2 group"
+                    className="text-liwan-text-muted hover:text-liwan-teal transition-all text-xs xs:text-sm flex items-center gap-2 group"
                     whileHover={{ x: direction === 'rtl' ? -5 : 5 }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-liwan-teal/50 group-hover:bg-liwan-teal transition-colors" />
+                    <span className="w-1 h-1 xs:w-1.5 xs:h-1.5 rounded-full bg-liwan-teal/50 group-hover:bg-liwan-teal transition-colors" />
                     {t(`nav.${item.key}`)}
                   </motion.button>
                 </motion.li>
@@ -154,17 +154,17 @@ const Footer = () => {
                 animate={{ rotate: [0, -10, 10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
-                <Code2 className="w-5 h-5 text-liwan-yellow" />
+                <Code2 className="w-4 h-4 xs:w-5 xs:h-5 text-liwan-yellow" />
               </motion.div>
-              <h4 className="text-white font-bold text-base">
+              <h4 className="text-white font-bold text-sm xs:text-base">
                 {direction === 'rtl' ? 'المزيد' : 'More'}
               </h4>
             </div>
 
             {/* Spacer */}
-            <div className="h-5" />
+            <div className="h-3 xs:h-5" />
 
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2 xs:gap-3">
               {navItems.slice(4).map((item, index) => (
                 <motion.li 
                   key={item.key}
@@ -174,10 +174,10 @@ const Footer = () => {
                 >
                   <motion.button
                     onClick={() => scrollToSection(item.href)}
-                    className="text-liwan-text-muted hover:text-liwan-teal transition-all text-sm flex items-center gap-2 group"
+                    className="text-liwan-text-muted hover:text-liwan-teal transition-all text-xs xs:text-sm flex items-center gap-2 group"
                     whileHover={{ x: direction === 'rtl' ? -5 : 5 }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-liwan-teal/50 group-hover:bg-liwan-teal transition-colors" />
+                    <span className="w-1 h-1 xs:w-1.5 xs:h-1.5 rounded-full bg-liwan-teal/50 group-hover:bg-liwan-teal transition-colors" />
                     {t(`nav.${item.key}`)}
                   </motion.button>
                 </motion.li>
@@ -186,17 +186,17 @@ const Footer = () => {
           </div>
 
           {/* Scroll to Top Card */}
-          <div className="lg:col-span-1 flex lg:justify-end">
+          <div className="xs:col-span-2 lg:col-span-1 flex justify-center xs:justify-end">
             <motion.button
               onClick={scrollToTop}
-              className="w-14 h-14 rounded-xl bg-gradient-to-br from-liwan-green to-liwan-teal p-[2px] shadow-lg shadow-liwan-teal/20"
+              className="w-12 h-12 xs:w-14 xs:h-14 rounded-lg xs:rounded-xl bg-gradient-to-br from-liwan-green to-liwan-teal p-[2px] shadow-lg shadow-liwan-teal/20"
               whileHover={{ y: -5, scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="w-full h-full rounded-xl bg-liwan-bg/90 flex items-center justify-center hover:bg-liwan-bg/50 transition-colors">
-                <ArrowUp className="w-6 h-6 text-white" />
+              <div className="w-full h-full rounded-lg xs:rounded-xl bg-liwan-bg/90 flex items-center justify-center hover:bg-liwan-bg/50 transition-colors">
+                <ArrowUp className="w-5 h-5 xs:w-6 xs:h-6 text-white" />
               </div>
             </motion.button>
           </div>
@@ -215,10 +215,10 @@ const Footer = () => {
         {/* Spacer */}
         <div className="h-6 sm:h-8" />
 
-        {/* Bottom Section */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* Bottom Section */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
           <motion.p 
-            className="text-sm text-liwan-text-muted"
+            className="text-xs xs:text-sm text-liwan-text-muted text-center sm:text-start"
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >

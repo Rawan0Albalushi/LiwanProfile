@@ -160,7 +160,7 @@ const Contact = () => {
         <div className="h-12 sm:h-16 md:h-20" />
 
         {/* Contact Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full max-w-5xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 w-full max-w-5xl">
           {contactInfo.map((info, index) => {
             const CardWrapper = info.href ? motion.a : motion.div;
             return (
@@ -172,7 +172,7 @@ const Contact = () => {
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               >
                 <motion.div 
-                  className="h-full p-6 rounded-2xl bg-liwan-bg-secondary/40 border border-white/10 text-center flex flex-col items-center relative overflow-hidden shadow-lg shadow-black/20 backdrop-blur-sm"
+                  className="h-full p-3 xs:p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-liwan-bg-secondary/40 border border-white/10 text-center flex flex-col items-center relative overflow-hidden shadow-lg shadow-black/20 backdrop-blur-sm"
                   animate={isInView ? { y: [0, -6, 0] } : {}}
                   transition={{ duration: 3.5, repeat: Infinity, delay: index * 0.3, ease: "easeInOut" }}
                 >
@@ -185,41 +185,41 @@ const Contact = () => {
                   
                   {/* Icon */}
                   <motion.div 
-                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gradient-to-br ${info.gradient} p-[2px] shadow-lg relative z-10`}
+                    className={`w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br ${info.gradient} p-[1.5px] sm:p-[2px] shadow-lg relative z-10`}
                     animate={isInView ? { scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] } : {}}
                     transition={{ duration: 4, repeat: Infinity, delay: index * 0.4, ease: "easeInOut" }}
                   >
-                    <div className="w-full h-full rounded-xl bg-liwan-bg/80 flex items-center justify-center">
-                      <info.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    <div className="w-full h-full rounded-lg sm:rounded-xl bg-liwan-bg/80 flex items-center justify-center">
+                      <info.icon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-7 sm:h-7 text-white" />
                     </div>
                   </motion.div>
 
                   {/* Spacer */}
-                  <div className="h-4" />
+                  <div className="h-2 sm:h-4" />
 
                   {/* Label */}
-                  <p className="text-sm text-liwan-text-muted relative z-10">
+                  <p className="text-xs sm:text-sm text-liwan-text-muted relative z-10">
                     {info.label}
                   </p>
 
                   {/* Spacer */}
-                  <div className="h-2" />
+                  <div className="h-1 sm:h-2" />
 
                   {/* Value */}
-                  <p className="text-base sm:text-lg text-white font-semibold relative z-10" dir={info.icon === Mail || info.icon === Phone ? 'ltr' : undefined}>
+                  <p className="text-xs xs:text-sm sm:text-lg text-white font-semibold relative z-10 break-all sm:break-normal" dir={info.icon === Mail || info.icon === Phone ? 'ltr' : undefined}>
                     {info.value}
                   </p>
 
                   {/* Decorative dot */}
                   <motion.div 
-                    className={`absolute top-3 ${direction === 'rtl' ? 'left-3' : 'right-3'} w-2 h-2 rounded-full bg-gradient-to-br ${info.gradient}`}
+                    className={`absolute top-2 sm:top-3 ${direction === 'rtl' ? 'left-2 sm:left-3' : 'right-2 sm:right-3'} w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-gradient-to-br ${info.gradient}`}
                     animate={isInView ? { scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] } : {}}
                     transition={{ duration: 2, repeat: Infinity, delay: index * 0.3, ease: "easeInOut" }}
                   />
                   
                   {/* Glowing border */}
                   <motion.div 
-                    className={`absolute inset-0 rounded-2xl border-2 border-transparent`}
+                    className={`absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent`}
                     style={{
                       background: `linear-gradient(135deg, var(--tw-gradient-stops)) padding-box, linear-gradient(135deg, var(--tw-gradient-stops)) border-box`,
                       WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
@@ -243,10 +243,10 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="w-full max-w-md"
+          className="w-full max-w-md px-2"
         >
           <motion.div 
-            className="p-6 sm:p-8 rounded-2xl bg-liwan-bg-secondary/40 border border-white/10 backdrop-blur-sm text-center relative overflow-hidden"
+            className="p-4 xs:p-6 sm:p-8 rounded-xl sm:rounded-2xl bg-liwan-bg-secondary/40 border border-white/10 backdrop-blur-sm text-center relative overflow-hidden"
             animate={isInView ? { y: [0, -4, 0] } : {}}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -273,14 +273,14 @@ const Contact = () => {
               <Code2 className="w-5 h-5 text-liwan-yellow" />
             </motion.div>
 
-            <p className="text-base text-liwan-text-secondary relative z-10">
+            <p className="text-sm xs:text-base text-liwan-text-secondary relative z-10">
               {t('contact.social')}
             </p>
 
             {/* Spacer */}
-            <div className="h-5" />
+            <div className="h-4 xs:h-5" />
 
-            <div className="flex items-center justify-center gap-4 relative z-10">
+            <div className="flex items-center justify-center gap-3 xs:gap-4 relative z-10">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
@@ -292,20 +292,20 @@ const Contact = () => {
                   transition={{ delay: 0.8 + index * 0.1, type: "spring" }}
                 >
                   <motion.div 
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${social.gradient} p-[2px] shadow-lg`}
+                    className={`w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${social.gradient} p-[2px] shadow-lg`}
                     animate={isInView ? { scale: [1, 1.1, 1] } : {}}
                     transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.3, ease: "easeInOut" }}
                     whileHover={{ scale: 1.15, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="w-full h-full rounded-xl bg-liwan-bg/80 flex items-center justify-center hover:bg-liwan-bg/50 transition-colors duration-300">
-                      <social.icon className="w-6 h-6 text-white" />
+                    <div className="w-full h-full rounded-lg sm:rounded-xl bg-liwan-bg/80 flex items-center justify-center hover:bg-liwan-bg/50 transition-colors duration-300">
+                      <social.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                   </motion.div>
                   
                   {/* Glow effect */}
                   <motion.div 
-                    className={`absolute inset-0 rounded-xl bg-gradient-to-br ${social.gradient} blur-lg -z-10`}
+                    className={`absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-br ${social.gradient} blur-lg -z-10`}
                     animate={isInView ? { opacity: [0.2, 0.4, 0.2] } : { opacity: 0 }}
                     transition={{ duration: 2, repeat: Infinity, delay: index * 0.4, ease: "easeInOut" }}
                   />

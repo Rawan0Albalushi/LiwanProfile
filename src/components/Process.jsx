@@ -84,7 +84,7 @@ const Process = () => {
         <div className="h-12 sm:h-16 md:h-20" />
 
         {/* Process Steps */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 w-full">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -93,7 +93,7 @@ const Process = () => {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
             >
               <motion.div 
-                className="h-full p-5 pt-8 rounded-xl bg-liwan-bg-secondary/30 border border-white/15 text-center flex flex-col items-center relative shadow-xl shadow-liwan-blue/5"
+                className="h-full p-3 xs:p-4 sm:p-5 pt-6 xs:pt-7 sm:pt-8 rounded-lg sm:rounded-xl bg-liwan-bg-secondary/30 border border-white/15 text-center flex flex-col items-center relative shadow-xl shadow-liwan-blue/5"
                 animate={isInView ? { 
                   y: [0, -6, 0],
                 } : {}}
@@ -110,7 +110,7 @@ const Process = () => {
                 {/* Icon with Number */}
                 <div className="relative z-10 mt-1">
                   <motion.div 
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.gradient} p-[2px]`}
+                    className={`w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br ${step.gradient} p-[2px]`}
                     animate={isInView ? { 
                       scale: [1, 1.08, 1],
                     } : {}}
@@ -133,13 +133,13 @@ const Process = () => {
                           ease: "easeInOut"
                         }}
                       >
-                        <step.icon className="w-7 h-7 text-white" />
+                        <step.icon className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
                       </motion.div>
                     </div>
                   </motion.div>
                   {/* Step Number with pulse */}
                   <motion.div 
-                    className={`absolute -top-1 ${direction === 'rtl' ? '-left-1' : '-right-1'} w-7 h-7 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center text-xs font-bold text-white`}
+                    className={`absolute -top-1 ${direction === 'rtl' ? '-left-1' : '-right-1'} w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center text-[10px] xs:text-xs font-bold text-white`}
                     animate={{ 
                       scale: [1, 1.15, 1],
                       boxShadow: [
@@ -171,18 +171,18 @@ const Process = () => {
                 </div>
 
                 {/* Spacer */}
-                <div className="h-5" />
+                <div className="h-3 xs:h-4 sm:h-5" />
 
                 {/* Title */}
-                <h3 className="text-base sm:text-lg font-bold text-liwan-teal relative z-10">
+                <h3 className="text-sm xs:text-base sm:text-lg font-bold text-liwan-teal relative z-10">
                   {step.title}
                 </h3>
 
                 {/* Spacer */}
-                <div className="h-3" />
+                <div className="h-2 xs:h-3" />
 
                 {/* Description */}
-                <p className="text-sm text-liwan-text-secondary leading-[1.8] relative z-10">
+                <p className="text-xs xs:text-sm text-liwan-text-secondary leading-[1.7] xs:leading-[1.8] relative z-10">
                   {step.description}
                 </p>
               </motion.div>

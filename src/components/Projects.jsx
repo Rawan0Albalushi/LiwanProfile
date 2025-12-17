@@ -332,8 +332,8 @@ const Projects = () => {
               <div className="absolute inset-0 rounded-[2rem] border border-white/[0.08] group-hover:border-emerald-500/20 transition-colors duration-500" />
               
               {/* Content Container */}
-              <div className="relative z-10 pt-4 pb-8 px-8 sm:pt-5 sm:pb-10 sm:px-10 lg:pt-6 lg:pb-12 lg:px-12">
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12">
+              <div className="relative z-10 pt-4 pb-6 px-4 xs:px-6 sm:pt-5 sm:pb-10 sm:px-10 lg:pt-6 lg:pb-12 lg:px-12">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-10 lg:gap-12">
                   
                   {/* Content Side - 3 columns */}
                   <div className={`lg:col-span-3 flex flex-col items-center justify-center ${direction === 'rtl' ? 'lg:order-2' : 'lg:order-1'}`}>
@@ -345,11 +345,11 @@ const Projects = () => {
                       <img 
                         src={featuredProject.logo} 
                         alt={featuredProject.title} 
-                        className="w-48 h-auto sm:w-56 lg:w-72 mb-8 mx-auto drop-shadow-2xl"
+                        className="w-36 xs:w-44 h-auto sm:w-56 lg:w-72 mb-6 sm:mb-8 mx-auto drop-shadow-2xl"
                       />
                       
                       {/* Eyebrow / Title */}
-                      <h3 className="text-emerald-400 text-xl sm:text-2xl lg:text-3xl font-bold">
+                      <h3 className="text-emerald-400 text-lg xs:text-xl sm:text-2xl lg:text-3xl font-bold">
                         {direction === 'rtl' 
                           ? 'منصة تعليم وتدريب رقمية متكاملة' 
                           : 'Integrated Digital Learning & Training Platform'}
@@ -367,20 +367,20 @@ const Projects = () => {
                       <div className="h-8 sm:h-10" />
                       
                       {/* CTA Button */}
-                      <button className="group/btn relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-base sm:text-lg transition-all duration-300 shadow-xl shadow-emerald-900/40 hover:shadow-2xl hover:shadow-emerald-800/50 hover:-translate-y-0.5">
+                      <button className="group/btn relative inline-flex items-center gap-2 sm:gap-3 px-5 xs:px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-sm xs:text-base sm:text-lg transition-all duration-300 shadow-xl shadow-emerald-900/40 hover:shadow-2xl hover:shadow-emerald-800/50 hover:-translate-y-0.5">
                         <span>{direction === 'rtl' ? 'زيارة المنصة' : 'Visit Platform'}</span>
-                        <ArrowUpRight className="w-5 h-5 group-hover/btn:rotate-45 transition-transform duration-300" />
+                        <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:rotate-45 transition-transform duration-300" />
                       </button>
                     </div>
                   </div>
                   
                   {/* Mockup Side - 2 columns - Stacked Phones */}
                   <div className={`lg:col-span-2 relative flex items-center justify-center ${direction === 'rtl' ? 'lg:order-1 lg:pr-4' : 'lg:order-2 lg:pl-4'}`}>
-                    <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[380px] sm:h-[440px]">
+                    <div className="relative w-full max-w-[200px] xs:max-w-[240px] sm:max-w-[320px] h-[280px] xs:h-[320px] sm:h-[440px]">
                       
                       {/* Secondary Phone - Behind, smaller, with blur */}
-                      <div className={`absolute ${direction === 'rtl' ? 'right-0' : 'left-0'} top-8 w-[55%] aspect-[9/19] rounded-2xl overflow-hidden shadow-xl shadow-black/40 bg-[#1a5c3a] opacity-60 blur-[1px]`}>
-                        <div className="absolute inset-0 rounded-2xl border border-white/[0.06] z-20" />
+                      <div className={`absolute ${direction === 'rtl' ? 'right-0' : 'left-0'} top-6 sm:top-8 w-[55%] aspect-[9/19] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl shadow-black/40 bg-[#1a5c3a] opacity-60 blur-[1px]`}>
+                        <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-white/[0.06] z-20" />
                         <img 
                           src={nahjScreen1} 
                           alt="Nahj Platform Splash Screen" 
@@ -389,8 +389,8 @@ const Projects = () => {
                       </div>
                       
                       {/* Primary Phone - Front, bigger */}
-                      <div className={`absolute ${direction === 'rtl' ? 'left-0' : 'right-0'} top-0 w-[70%] aspect-[9/19] rounded-2xl overflow-hidden shadow-2xl shadow-black/50 bg-[#1a5c3a] z-10 group-hover:shadow-emerald-900/40 transition-shadow duration-500`}>
-                        <div className="absolute inset-0 rounded-2xl border border-white/[0.1] z-20" />
+                      <div className={`absolute ${direction === 'rtl' ? 'left-0' : 'right-0'} top-0 w-[70%] aspect-[9/19] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/50 bg-[#1a5c3a] z-10 group-hover:shadow-emerald-900/40 transition-shadow duration-500`}>
+                        <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-white/[0.1] z-20" />
                         <img 
                           src={nahjScreen2} 
                           alt="Nahj Platform Interface" 
@@ -435,7 +435,7 @@ const Projects = () => {
             {duplicatedProjects.map((project, index) => (
               <div
                 key={`${project.id}-${index}`}
-                className="flex-shrink-0 w-[200px] sm:w-[240px] relative"
+                className="flex-shrink-0 w-[180px] xs:w-[200px] sm:w-[240px] relative"
                 onMouseEnter={pause}
                 onMouseLeave={resume}
               >
@@ -447,7 +447,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="block h-full group cursor-pointer relative"
                   >
-                    <div className={`relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-2xl ${project.bgColor ? 'shadow-amber-900/40 group-hover:shadow-[0_0_80px_rgba(217,119,6,0.5)]' : 'shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)]'} transition-all duration-500 ring-2 ring-transparent ${project.bgColor ? 'group-hover:ring-amber-400/60' : 'group-hover:ring-purple-400/60'}`}>
+                    <div className={`relative h-full min-h-[280px] xs:min-h-[320px] sm:min-h-[380px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl ${project.bgColor ? 'shadow-amber-900/40 group-hover:shadow-[0_0_80px_rgba(217,119,6,0.5)]' : 'shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)]'} transition-all duration-500 ring-2 ring-transparent ${project.bgColor ? 'group-hover:ring-amber-400/60' : 'group-hover:ring-purple-400/60'}`}>
                       {/* Background Image with blur overlay */}
                       {project.bgImage ? (
                         <>
@@ -487,18 +487,18 @@ const Projects = () => {
                       />
                       
                       {/* Glass border effect */}
-                      <div className="absolute inset-0 rounded-3xl border-2 border-white/10 group-hover:border-white/30 transition-all duration-500" />
-                      <div className="absolute inset-[1px] rounded-3xl border border-white/5" />
+                      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-white/10 group-hover:border-white/30 transition-all duration-500" />
+                      <div className="absolute inset-[1px] rounded-2xl sm:rounded-3xl border border-white/5" />
                       
                       {/* Shine effect on hover */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                       </div>
                       
-                      <div className="relative z-10 h-full p-5 sm:p-6 pt-6 sm:pt-8 flex flex-col items-center justify-start text-center">
+                      <div className="relative z-10 h-full p-4 xs:p-5 sm:p-6 pt-5 xs:pt-6 sm:pt-8 flex flex-col items-center justify-start text-center">
                         {/* Logo */}
                         <motion.div 
-                          className="relative w-32 h-32 sm:w-36 sm:h-36 mb-4 flex items-center justify-center"
+                          className="relative w-24 h-24 xs:w-32 xs:h-32 sm:w-36 sm:h-36 mb-3 sm:mb-4 flex items-center justify-center"
                           animate={{ y: [0, -4, 0] }}
                           transition={{ duration: 4, repeat: Infinity, delay: index * 0.2, ease: "easeInOut" }}
                         >
@@ -564,7 +564,7 @@ const Projects = () => {
                   ) : (
                     /* Rich card without URL (isRichCard only) */
                     <div className="block h-full group relative">
-                      <div className={`relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60`}>
+                      <div className={`relative h-full min-h-[280px] xs:min-h-[320px] sm:min-h-[380px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-purple-900/40 group-hover:shadow-[0_0_80px_rgba(168,85,247,0.6)] transition-all duration-500 ring-2 ring-transparent group-hover:ring-purple-400/60`}>
                         {/* Gradient Background for cards without bgImage */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${project.bgColor || project.gradient} opacity-90`} />
                         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-slate-950/50 to-slate-950/70" />
@@ -582,18 +582,18 @@ const Projects = () => {
                         />
                         
                         {/* Glass border effect */}
-                        <div className="absolute inset-0 rounded-3xl border-2 border-white/10 group-hover:border-white/30 transition-all duration-500" />
-                        <div className="absolute inset-[1px] rounded-3xl border border-white/5" />
+                        <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-white/10 group-hover:border-white/30 transition-all duration-500" />
+                        <div className="absolute inset-[1px] rounded-2xl sm:rounded-3xl border border-white/5" />
                         
                         {/* Shine effect on hover */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                         </div>
                         
-                        <div className="relative z-10 h-full p-5 sm:p-6 pt-6 sm:pt-8 flex flex-col items-center justify-start text-center">
+                        <div className="relative z-10 h-full p-4 xs:p-5 sm:p-6 pt-5 xs:pt-6 sm:pt-8 flex flex-col items-center justify-start text-center">
                           {/* Logo */}
                           <motion.div 
-                            className="relative w-32 h-32 sm:w-36 sm:h-36 mb-4 flex items-center justify-center"
+                            className="relative w-24 h-24 xs:w-32 xs:h-32 sm:w-36 sm:h-36 mb-3 sm:mb-4 flex items-center justify-center"
                             animate={{ y: [0, -4, 0] }}
                             transition={{ duration: 4, repeat: Infinity, delay: index * 0.2, ease: "easeInOut" }}
                           >
@@ -650,7 +650,7 @@ const Projects = () => {
                   )
                 ) : (
                   <div className="group relative h-full cursor-default">
-                    <div className="relative h-full min-h-[320px] sm:min-h-[380px] rounded-3xl overflow-hidden shadow-xl shadow-black/20 group-hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] ring-2 ring-transparent group-hover:ring-purple-500/40 transition-all duration-500">
+                    <div className="relative h-full min-h-[280px] xs:min-h-[320px] sm:min-h-[380px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-black/20 group-hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] ring-2 ring-transparent group-hover:ring-purple-500/40 transition-all duration-500">
                       
                       {/* Sleek dark glass background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent backdrop-blur-xl" />
@@ -668,8 +668,8 @@ const Projects = () => {
                       />
                       
                       {/* Glass border */}
-                      <div className="absolute inset-0 rounded-3xl border border-white/[0.08] group-hover:border-white/25 transition-all duration-500" />
-                      <div className="absolute inset-[1px] rounded-3xl border border-dashed border-white/[0.04] group-hover:border-white/10 transition-all duration-500" />
+                      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border border-white/[0.08] group-hover:border-white/25 transition-all duration-500" />
+                      <div className="absolute inset-[1px] rounded-2xl sm:rounded-3xl border border-dashed border-white/[0.04] group-hover:border-white/10 transition-all duration-500" />
                       
                       <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col items-center justify-center text-center">
                         {/* Large icon container */}
@@ -727,11 +727,11 @@ const Projects = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1.2, type: "spring" }}
-          className="max-w-4xl w-full"
+          className="max-w-4xl w-full px-2"
         >
           <div className="relative">
             <motion.div 
-              className="relative p-10 sm:p-12 rounded-[2rem] overflow-hidden"
+              className="relative p-6 xs:p-8 sm:p-12 rounded-2xl sm:rounded-[2rem] overflow-hidden"
               whileHover={{ scale: 1.01 }}
               transition={{ duration: 0.3 }}
             >
@@ -758,7 +758,7 @@ const Projects = () => {
                 "
               </motion.div>
 
-              <p className="relative z-10 text-xl sm:text-2xl md:text-3xl text-white/90 font-medium leading-relaxed text-center">
+              <p className="relative z-10 text-base xs:text-lg sm:text-2xl md:text-3xl text-white/90 font-medium leading-relaxed text-center">
                 {t('projects.quote')}
               </p>
 

@@ -36,7 +36,7 @@ const Hero = () => {
     >
 
       {/* Content */}
-      <div className="relative z-10 container-custom text-center px-6 py-32 flex flex-col items-center gap-0">
+      <div className="relative z-10 container-custom text-center px-4 xs:px-6 py-24 xs:py-28 sm:py-32 flex flex-col items-center gap-0">
         
         {/* Badge */}
         <motion.div
@@ -60,9 +60,10 @@ const Hero = () => {
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Code2 size={20} className="text-liwan-yellow" />
+            <Code2 size={18} className="text-liwan-yellow xs:hidden" />
+            <Code2 size={20} className="text-liwan-yellow hidden xs:block" />
           </motion.div>
-          <span className="text-base sm:text-lg text-liwan-text-secondary font-medium">
+          <span className="text-sm xs:text-base sm:text-lg text-liwan-text-secondary font-medium">
             {direction === 'rtl' ? 'ليوان البرمجة' : 'Liwan Coding'}
           </span>
         </motion.div>
@@ -75,20 +76,20 @@ const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+          className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
         >
           <span className="text-white block leading-[1.3]">{t('hero.title')}</span>
         </motion.h1>
 
         {/* Spacer 2 */}
-        <div className="h-6 sm:h-8" />
+        <div className="h-4 xs:h-6 sm:h-8" />
 
         {/* Title Highlight */}
         <motion.h2
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text"
+          className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text"
         >
           {t('hero.titleHighlight')}
         </motion.h2>
@@ -103,7 +104,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="flex justify-center"
         >
-          <p className="max-w-2xl text-center text-lg sm:text-xl text-liwan-text-muted leading-[2.2]">
+          <p className="max-w-2xl text-center text-base xs:text-lg sm:text-xl text-liwan-text-muted leading-[2] xs:leading-[2.2]">
             {t('hero.description')}
           </p>
         </motion.div>
@@ -117,20 +118,21 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+            className="absolute bottom-6 xs:bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2"
           >
             <motion.button
               onClick={() => scrollToSection('#about')}
-              className="flex flex-col items-center gap-3 text-white/40 hover:text-white/70 transition-colors duration-300"
+              className="flex flex-col items-center gap-2 xs:gap-3 text-white/40 hover:text-white/70 transition-colors duration-300"
             >
-              <span className="text-xs tracking-[0.2em] uppercase font-medium">
+              <span className="text-[10px] xs:text-xs tracking-[0.15em] xs:tracking-[0.2em] uppercase font-medium">
                 {direction === 'rtl' ? 'اكتشف المزيد' : 'Scroll'}
               </span>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <ChevronDown size={28} strokeWidth={2} />
+                <ChevronDown size={24} strokeWidth={2} className="xs:hidden" />
+                <ChevronDown size={28} strokeWidth={2} className="hidden xs:block" />
               </motion.div>
             </motion.button>
           </motion.div>

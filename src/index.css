@@ -81,6 +81,9 @@
   --font-ibm-arabic: 'IBM Plex Sans Arabic', sans-serif;
   --font-outfit: 'Outfit', sans-serif;
   --font-inter: 'Inter', sans-serif;
+
+  /* Custom breakpoints */
+  --breakpoint-xs: 375px;
 }
 
 /* Base styles */
