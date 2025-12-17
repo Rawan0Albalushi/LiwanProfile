@@ -423,7 +423,7 @@ const Projects = () => {
                       <img 
                         src={featuredProject.logo} 
                         alt={featuredProject.title} 
-                        className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 object-contain mb-8 mx-auto"
+                        className="w-48 h-auto sm:w-56 lg:w-72 mb-8 mx-auto drop-shadow-2xl"
                       />
                       
                       {/* Eyebrow / Title */}
@@ -462,7 +462,7 @@ const Projects = () => {
                         <img 
                           src={nahjScreen1} 
                           alt="Nahj Platform Splash Screen" 
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                       
@@ -472,7 +472,7 @@ const Projects = () => {
                         <img 
                           src={nahjScreen2} 
                           alt="Nahj Platform Interface" 
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                       
@@ -538,14 +538,11 @@ const Projects = () => {
                       
                       <div className="relative z-10 h-full p-4 sm:p-5 flex flex-col items-center justify-center text-center">
                         <motion.div 
-                          className="relative w-14 h-14 sm:w-16 sm:h-16 mb-3"
+                          className="relative w-28 h-28 sm:w-32 sm:h-32 mb-3"
                           animate={{ y: [0, -5, 0] }}
                           transition={{ duration: 4, repeat: Infinity, delay: index * 0.2 }}
                         >
-                          <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-xl blur-xl opacity-40`} />
-                          <div className="relative w-full h-full rounded-xl bg-white/[0.1] backdrop-blur-md border border-white/[0.1] p-2.5 overflow-hidden">
-                            <img src={project.logo} alt={project.title} className="w-full h-full object-contain" />
-                          </div>
+                          <img src={project.logo} alt={project.title} className="w-full h-full object-contain drop-shadow-xl" />
                         </motion.div>
                         
                         <h4 className="text-xs sm:text-sm font-bold text-white mb-1 line-clamp-1">
