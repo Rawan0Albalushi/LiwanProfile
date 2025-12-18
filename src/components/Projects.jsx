@@ -100,17 +100,18 @@ const useAutoScroll = (containerRef, direction, speed = 0.5, pauseDelay = 2500) 
               // RTL: scroll decreases (goes more negative)
               el.scrollLeft -= actualScroll;
               
-              // When reached the end, jump back to middle seamlessly
-              if (Math.abs(el.scrollLeft) >= oneThird * 2) {
-                el.scrollLeft = -oneThird;
+              // When reached the end OR hit max scroll, jump back seamlessly
+              const currentPosRTL = Math.abs(el.scrollLeft);
+              if (currentPosRTL >= oneThird * 2 || currentPosRTL >= maxScroll - 5) {
+                el.scrollLeft = el.scrollLeft + oneThird;
               }
             } else {
               // LTR: scroll increases
               el.scrollLeft += actualScroll;
               
-              // When reached past the middle section, jump back seamlessly
-              if (el.scrollLeft >= oneThird * 2) {
-                el.scrollLeft = oneThird;
+              // When reached past the middle section OR hit max scroll, jump back seamlessly
+              if (el.scrollLeft >= oneThird * 2 || el.scrollLeft >= maxScroll - 5) {
+                el.scrollLeft = el.scrollLeft - oneThird;
               }
             }
             
@@ -490,8 +491,6 @@ const Projects = () => {
               <div
                 key={`${project.id}-${index}`}
                 className="flex-shrink-0 w-[180px] xs:w-[200px] sm:w-[240px] relative"
-                onMouseEnter={pause}
-                onMouseLeave={resume}
               >
                 {(project.hasUrl || project.isRichCard) ? (
                   project.hasUrl ? (
