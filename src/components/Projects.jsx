@@ -13,6 +13,8 @@ import entreforumBg from '../assets/images/entreforum-back.png';
 import studentWelfareLogo from '../assets/images/student welfare fund logo.jpg';
 import goldcomLogo from '../assets/images/Goldcom Logo - Wide Monochrome White.png';
 import maksabLogo from '../assets/images/maksab.png';
+import clanLogo from '../assets/images/clanlogo.png';
+import mkancomLogo from '../assets/images/mkancom.jpg';
 
 // 3D Card Component for Featured
 const Card3D = ({ children, className }) => {
@@ -285,6 +287,36 @@ const Projects = () => {
       hasUrl: false,
       isRichCard: true,
       isLive: true,
+    },
+    {
+      id: 24,
+      title: direction === 'rtl' ? 'كلان' : 'Clan',
+      subtitle: direction === 'rtl' ? 'متجر إلكتروني' : 'E-Commerce Store',
+      description: direction === 'rtl' 
+        ? 'متجر إلكتروني عصري يقدّم تجربة تسوق سلسة ومميزة، مع واجهة أنيقة وسهلة الاستخدام وحلول دفع آمنة.'
+        : 'A modern e-commerce store offering a seamless and distinctive shopping experience, with an elegant user interface and secure payment solutions.',
+      logo: clanLogo,
+      gradient: 'from-red-500 via-yellow-500 to-green-600',
+      bgColor: 'from-stone-900 via-neutral-900 to-stone-950',
+      hasUrl: false,
+      isRichCard: true,
+      isLive: false,
+      inDevelopment: true,
+    },
+    {
+      id: 25,
+      title: direction === 'rtl' ? 'مكانكم' : 'Mkancom',
+      subtitle: direction === 'rtl' ? 'منصة حجز تذاكر للفعاليات' : 'Event Ticket Booking Platform',
+      description: direction === 'rtl' 
+        ? 'منصة رقمية متكاملة لحجز تذاكر الفعاليات والمناسبات، توفّر تجربة حجز سريعة وآمنة مع إدارة ذكية للمقاعد والفعاليات.'
+        : 'An integrated digital platform for booking event tickets, providing a fast and secure booking experience with smart seating and event management.',
+      logo: mkancomLogo,
+      gradient: 'from-purple-500 via-violet-500 to-indigo-600',
+      bgColor: 'from-purple-950 via-violet-950 to-indigo-950',
+      hasUrl: false,
+      isRichCard: true,
+      isLive: false,
+      inDevelopment: true,
     },
   ];
 
@@ -564,23 +596,23 @@ const Projects = () => {
                           />
                         </motion.div>
                         
-                        {/* Title */}
-                        <h4 className="text-base sm:text-lg font-bold text-white mb-1 drop-shadow-lg">
+                        {/* Title - single line */}
+                        <h4 className="text-base sm:text-lg font-bold text-white mb-1 drop-shadow-lg line-clamp-1">
                           {project.title}
                         </h4>
                         
-                        {/* Subtitle with gradient */}
+                        {/* Subtitle with gradient - up to 2 lines */}
                         {project.subtitle && (
-                          <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold drop-shadow-lg`}>
+                          <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold drop-shadow-lg line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]`}>
                             {project.subtitle}
                           </p>
                         )}
                         
                         <div className="h-4" />
                         
-                        {/* Description */}
+                        {/* Description - 3 lines */}
                         {project.description && (
-                          <p className="text-xs text-white/60 leading-relaxed line-clamp-3">
+                          <p className="text-xs text-white/60 leading-relaxed line-clamp-3 min-h-[3.5rem]">
                             {project.description}
                           </p>
                         )}
@@ -659,23 +691,23 @@ const Projects = () => {
                             />
                           </motion.div>
                           
-                          {/* Title */}
-                          <h4 className="text-base sm:text-lg font-bold text-white mb-1 drop-shadow-lg">
+                          {/* Title - single line */}
+                          <h4 className="text-base sm:text-lg font-bold text-white mb-1 drop-shadow-lg line-clamp-1">
                             {project.title}
                           </h4>
                           
-                          {/* Subtitle with gradient */}
+                          {/* Subtitle with gradient - up to 2 lines */}
                           {project.subtitle && (
-                            <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold drop-shadow-lg`}>
+                            <p className={`text-sm sm:text-base text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} font-bold drop-shadow-lg line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem]`}>
                               {project.subtitle}
                             </p>
                           )}
                           
                           <div className="h-4" />
                           
-                          {/* Description */}
+                          {/* Description - 3 lines */}
                           {project.description && (
-                            <p className="text-xs text-white/60 leading-relaxed line-clamp-3">
+                            <p className="text-xs text-white/60 leading-relaxed line-clamp-3 min-h-[3.5rem]">
                               {project.description}
                             </p>
                           )}
