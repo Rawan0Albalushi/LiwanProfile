@@ -6,6 +6,7 @@ import Services from './components/Services';
 import Process from './components/Process';
 import WhyUs from './components/WhyUs';
 import Projects from './components/Projects';
+import Partners from './components/Partners';
 import Vision from './components/Vision';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -32,6 +33,7 @@ function App() {
           <Process />
           {/* <WhyUs /> */}
           <Projects />
+          <Partners />
           <Vision />
           <Contact />
         </main>

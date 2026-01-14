@@ -87,6 +87,12 @@
     "feature4": "Solutions that achieve business goals",
     "quote": "Our clients' success is the best proof of our quality."
   },
+  "partners": {
+    "title": "Our Partners",
+    "subtitle": "Trusted by Leading Organizations",
+    "description": "We're proud to work with top companies and institutions who trusted us to bring their ideas to digital reality",
+    "trustText": "Partnerships Built on Trust & Excellence"
+  },
   "vision": {
     "title": "Our Vision",
     "description": "To be a trusted technology partner that builds digital products driving growth and delivering lasting value."
