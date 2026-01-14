@@ -75,43 +75,6 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-liwan-bg/80 via-transparent to-transparent group-hover:from-liwan-bg/60 transition-all duration-500" />
               </motion.div>
 
-              {/* Floating badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { 
-                  opacity: 1, 
-                  y: [0, -8, 0],
-                } : {}}
-                transition={{ 
-                  opacity: { duration: 0.6, delay: 0.6 },
-                  y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.6 }
-                }}
-                whileHover={{ scale: 1.05 }}
-                className={`absolute -bottom-4 xs:-bottom-6 ${direction === 'rtl' ? 'left-2 xs:-left-2 sm:-left-6' : 'right-2 xs:-right-2 sm:-right-6'} bg-liwan-bg-secondary/90 backdrop-blur-xl border border-white/10 rounded-lg xs:rounded-xl p-3 xs:p-4 sm:p-5 hover:border-liwan-green/30 transition-all duration-500 hover:shadow-xl hover:shadow-liwan-green/10 group`}
-              >
-                <div className="flex items-center gap-2 xs:gap-3">
-                  <motion.div 
-                    className="w-9 h-9 xs:w-10 xs:h-10 sm:w-12 sm:h-12 rounded-lg xs:rounded-xl bg-gradient-to-br from-liwan-green to-liwan-teal flex items-center justify-center"
-                    whileHover={{ rotate: [0, -10, 10, 0] }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Rocket className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 text-white" />
-                  </motion.div>
-                  <div>
-                    <motion.div 
-                      className="text-lg xs:text-xl sm:text-2xl font-bold text-white"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : {}}
-                      transition={{ delay: 1 }}
-                    >
-                      +15
-                    </motion.div>
-                    <div className="text-xs xs:text-sm text-liwan-text-muted group-hover:text-liwan-text-secondary transition-colors">
-                      {direction === 'rtl' ? 'مشروع ناجح' : 'Successful Projects'}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
 

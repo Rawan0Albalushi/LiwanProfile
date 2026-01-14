@@ -53,9 +53,9 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Twitter, href: '#', label: 'Twitter', gradient: 'from-liwan-blue to-liwan-teal' },
+    { icon: Twitter, href: 'https://x.com/Liwan_Coding', label: 'Twitter', gradient: 'from-liwan-blue to-liwan-teal' },
     { icon: WhatsAppIcon, href: 'https://wa.me/', label: 'WhatsApp', gradient: 'from-liwan-green to-liwan-teal' },
-    { icon: Instagram, href: '#', label: 'Instagram', gradient: 'from-liwan-purple to-liwan-yellow' },
+    { icon: Instagram, href: 'https://www.instagram.com/liwan_coding/', label: 'Instagram', gradient: 'from-liwan-purple to-liwan-yellow' },
   ];
 
   return (
@@ -286,6 +286,8 @@ const Contact = () => {
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="relative"
                   aria-label={social.label}
                   initial={{ opacity: 0, scale: 0 }}
