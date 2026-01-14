@@ -6,8 +6,8 @@ import {
   ExternalLink, Code2, ArrowUpRight
 } from 'lucide-react';
 import nahjLogo from '../assets/images/nahj.png';
-import nahjScreen1 from '../assets/images/nahj1.jpg';
-import nahjScreen2 from '../assets/images/nahj2.jpg';
+import nahjScreen1 from '../assets/images/nahj2.jpg';
+import nahjScreen2 from '../assets/images/nahj22.jpg';
 import entreforumLogo from '../assets/images/entreforum.png';
 import entreforumBg from '../assets/images/entreforum-back.png';
 import studentWelfareLogo from '../assets/images/student welfare fund logo.jpg';
@@ -58,107 +58,21 @@ const Card3D = ({ children, className }) => {
   );
 };
 
-// Custom hook for smooth infinite auto-scroll using requestAnimationFrame
-const useAutoScroll = (containerRef, direction, speed = 0.5, pauseDelay = 2500) => {
-  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-  const isPausedRef = useRef(false);
+// Custom hook for CSS-based smooth infinite auto-scroll
+const useAutoScroll = (containerRef, direction, pauseDelay = 2500) => {
+  const [isPaused, setIsPaused] = useState(false);
   const resumeTimeoutRef = useRef(null);
-  const animationFrameRef = useRef(null);
-  const lastTimeRef = useRef(0);
-  const accumulatedScrollRef = useRef(0);
 
   useEffect(() => {
-    const isRTL = direction === 'rtl';
-    
-    // Smooth animation loop using requestAnimationFrame
-    const animate = (currentTime) => {
-      const el = containerRef.current;
-      
-      if (!el) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-      
-      // Calculate delta time for consistent speed across frame rates
-      const deltaTime = lastTimeRef.current ? (currentTime - lastTimeRef.current) / 16.67 : 1;
-      lastTimeRef.current = currentTime;
-      
-      if (!isPausedRef.current) {
-        const maxScroll = el.scrollWidth - el.clientWidth;
-        const oneThird = el.scrollWidth / 3; // Since we have 3 copies of projects
-        
-        if (maxScroll > 0) {
-          // Calculate scroll amount with delta time for smooth animation
-          const scrollAmount = speed * deltaTime;
-          
-          // Accumulate sub-pixel scroll values for smoother movement
-          accumulatedScrollRef.current += scrollAmount;
-          
-          // Only scroll when we have at least 0.3px accumulated
-          if (Math.abs(accumulatedScrollRef.current) >= 0.3) {
-            const actualScroll = accumulatedScrollRef.current;
-            
-            if (isRTL) {
-              // RTL: scroll decreases (goes more negative)
-              el.scrollLeft -= actualScroll;
-              
-              // When reached the end OR hit max scroll, jump back seamlessly
-              const currentPosRTL = Math.abs(el.scrollLeft);
-              if (currentPosRTL >= oneThird * 2 || currentPosRTL >= maxScroll - 5) {
-                el.scrollLeft = el.scrollLeft + oneThird;
-              }
-            } else {
-              // LTR: scroll increases
-              el.scrollLeft += actualScroll;
-              
-              // When reached past the middle section OR hit max scroll, jump back seamlessly
-              if (el.scrollLeft >= oneThird * 2 || el.scrollLeft >= maxScroll - 5) {
-                el.scrollLeft = el.scrollLeft - oneThird;
-              }
-            }
-            
-            accumulatedScrollRef.current = 0;
-          }
-          
-          setIsAutoScrolling(true);
-        }
-      } else {
-        setIsAutoScrolling(false);
-      }
-      
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    // Start animation after initial delay
-    const startTimeout = setTimeout(() => {
-      // Set initial scroll position to the middle section for seamless loop
-      const el = containerRef.current;
-      if (el) {
-        const oneThird = el.scrollWidth / 3;
-        if (isRTL) {
-          el.scrollLeft = -oneThird;
-        } else {
-          el.scrollLeft = oneThird;
-        }
-      }
-      animationFrameRef.current = requestAnimationFrame(animate);
-    }, 800);
-
     return () => {
-      clearTimeout(startTimeout);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
       if (resumeTimeoutRef.current) {
         clearTimeout(resumeTimeoutRef.current);
       }
     };
-  }, [direction, speed, containerRef]);
+  }, []);
 
   const pause = useCallback(() => {
-    isPausedRef.current = true;
-    setIsAutoScrolling(false);
-    
+    setIsPaused(true);
     if (resumeTimeoutRef.current) {
       clearTimeout(resumeTimeoutRef.current);
     }
@@ -170,7 +84,7 @@ const useAutoScroll = (containerRef, direction, speed = 0.5, pauseDelay = 2500) 
     }
     
     resumeTimeoutRef.current = setTimeout(() => {
-      isPausedRef.current = false;
+      setIsPaused(false);
     }, pauseDelay);
   }, [pauseDelay]);
 
@@ -179,7 +93,7 @@ const useAutoScroll = (containerRef, direction, speed = 0.5, pauseDelay = 2500) 
     resume();
   }, [pause, resume]);
 
-  return { pause, resume, touch, isAutoScrolling };
+  return { pause, resume, touch, isPaused };
 };
 
 const Projects = () => {
@@ -189,33 +103,14 @@ const Projects = () => {
   const scrollContainerRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  // Use auto-scroll hook - speed: 0.5px/frame (~30px/sec), pause delay: 2 seconds
-  const { pause, resume, touch } = useAutoScroll(scrollContainerRef, direction, 0.5, 2000);
+  // Use auto-scroll hook with CSS animation - pause delay: 2 seconds
+  const { pause, resume, touch, isPaused } = useAutoScroll(scrollContainerRef, direction, 2000);
 
   // Event handlers for pausing auto-scroll on user interaction
-  const handleMouseDown = () => pause();
-  const handleMouseUp = () => resume();
+  const handleMouseEnter = () => pause();
   const handleMouseLeave = () => resume();
   const handleTouchStart = () => pause();
   const handleTouchEnd = () => resume();
-  const handleWheel = (e) => {
-    const container = scrollContainerRef.current;
-    if (container && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault();
-      // Smooth scroll multiplier for better feel
-      const scrollMultiplier = 0.8;
-      const scrollAmount = e.deltaY * scrollMultiplier;
-      
-      // Apply scroll based on direction
-      if (direction === 'rtl') {
-        container.scrollLeft -= scrollAmount;
-      } else {
-        container.scrollLeft += scrollAmount;
-      }
-    }
-    touch();
-  };
-  const handleScroll = () => {}; // Don't pause on programmatic scroll
 
   // Featured Project (Nahj)
   const featuredProject = {
@@ -459,22 +354,22 @@ const Projects = () => {
                     <div className="relative w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[380px] lg:max-w-[420px] h-[320px] xs:h-[360px] sm:h-[480px] lg:h-[520px]">
                       
                       {/* Secondary Phone - Behind, smaller, with blur */}
-                      <div className={`absolute ${direction === 'rtl' ? 'right-0' : 'left-0'} top-6 sm:top-8 w-[55%] aspect-[9/19] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl shadow-black/40 bg-[#1a5c3a] opacity-60 blur-[1px]`}>
+                      <div className={`absolute ${direction === 'rtl' ? 'right-0' : 'left-0'} top-6 sm:top-8 w-[55%] aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl shadow-black/40 bg-[#1a5c3a] opacity-60 blur-[1px]`}>
                         <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-white/[0.06] z-20" />
                         <img 
                           src={nahjScreen1} 
                           alt="Nahj Platform Splash Screen" 
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       
                       {/* Primary Phone - Front, bigger */}
-                      <div className={`absolute ${direction === 'rtl' ? 'left-0' : 'right-0'} top-0 w-[70%] aspect-[9/19] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/50 bg-[#1a5c3a] z-10 group-hover:shadow-emerald-900/40 transition-shadow duration-500`}>
+                      <div className={`absolute ${direction === 'rtl' ? 'left-0' : 'right-0'} top-0 w-[70%] aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/50 bg-[#1a5c3a] z-10 group-hover:shadow-emerald-900/40 transition-shadow duration-500`}>
                         <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-white/[0.1] z-20" />
                         <img 
                           src={nahjScreen2} 
                           alt="Nahj Platform Interface" 
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       
@@ -499,26 +394,25 @@ const Projects = () => {
             <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 lg:w-64 bg-gradient-to-r from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 lg:w-64 bg-gradient-to-l from-liwan-bg via-liwan-bg/80 to-transparent z-20 pointer-events-none" />
 
-            {/* Scrollable Container */}
+            {/* Scrollable Container with CSS Animation */}
             <div 
               ref={scrollContainerRef}
-              className="flex flex-nowrap gap-6 sm:gap-8 overflow-x-scroll py-6 px-4 scrollbar-hide"
-              dir={direction}
-              style={{ 
-                scrollbarWidth: 'none', 
-                msOverflowStyle: 'none',
-                willChange: 'scroll-position',
-                WebkitOverflowScrolling: 'touch',
-                scrollBehavior: 'auto',
-              }}
-              onMouseDown={handleMouseDown}
-              onMouseUp={handleMouseUp}
+              className="overflow-hidden py-6"
+              onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
-              onWheel={handleWheel}
-              onScroll={handleScroll}
             >
+              <div 
+                className={`flex flex-nowrap gap-6 sm:gap-8 px-4 ${isPaused ? 'animation-paused' : ''}`}
+                dir={direction}
+                style={{
+                  animation: direction === 'rtl' 
+                    ? 'scrollRTL 60s linear infinite' 
+                    : 'scrollLTR 60s linear infinite',
+                  width: 'fit-content',
+                }}
+              >
             {duplicatedProjects.map((project, index) => (
               <div
                 key={`${project.id}-${index}`}
@@ -801,7 +695,8 @@ const Projects = () => {
                 )}
               </div>
             ))}
-          </div>
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -859,23 +754,28 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      {/* Hide scrollbar & Smooth scroll CSS */}
+      {/* Smooth infinite scroll CSS animation */}
       <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-          /* GPU acceleration for smoother scrolling */
-          transform: translateZ(0);
-          backface-visibility: hidden;
-        }
-        /* Ensure smooth momentum scrolling on touch devices */
-        @supports (-webkit-overflow-scrolling: touch) {
-          .scrollbar-hide {
-            -webkit-overflow-scrolling: touch;
+        @keyframes scrollLTR {
+          0% {
+            transform: translateX(0);
           }
+          100% {
+            transform: translateX(-33.333%);
+          }
+        }
+        
+        @keyframes scrollRTL {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(33.333%);
+          }
+        }
+        
+        .animation-paused {
+          animation-play-state: paused !important;
         }
       `}</style>
     </section>
